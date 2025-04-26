@@ -1,4 +1,4 @@
-import EditableDiv from "@/components/task-list/EditableDiv";
+import EditableDiv from "@/components/form/EditableDiv";
 import { useTaskContext } from "@/components/task-list/TaskContext";
 import { TaskType } from "@/types/global";
 import { useDraggable } from "@dnd-kit/core";

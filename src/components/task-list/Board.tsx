@@ -2,68 +2,116 @@ import Column from "@/components/task-list/Column";
 import { ColumnType, TaskType } from "@/types/global";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { TaskContext } from "./TaskContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-interface BoardProps {
-  columnList: ColumnType[];
-  taskList: TaskType[];
-}
+function useBoard() {
+  const [taskList, setTaskList] = useState<TaskType[]>([]);
 
-export default function Board(props: BoardProps) {
-  const [taskList, setTaskList] = useState(props.taskList);
+  const [columnList, setColumnList] = useState<ColumnType[]>([]);
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
+  
+  const columnKey = "columnList";
+  const taskKey = "taskList";
 
-    if (!over) {
-      return;
+  useEffect(() => {
+    const defaultTaskList: TaskType[] = [
+      { id: "1", title: "title 1", description: "task 1", columnId: "1" },
+      { id: "2", title: "title 2", description: "task 2", columnId: "2" },
+      { id: "3", title: "title 3", description: "task 3", columnId: "1" },
+      { id: "4", title: "title 4", description: "task 4", columnId: "2" },
+    ];
+    
+    const defaultColumnList: ColumnType[] = [
+      { id: "1", name: "TODO" },
+      { id: "2", name: "In progress" },
+    ];
+    function initTaskList() {
+      const taskListStored = localStorage.getItem(taskKey);
+      if (taskListStored) {
+        setTaskList(JSON.parse(taskListStored));
+      } else {
+        localStorage.setItem(taskKey, JSON.stringify(defaultTaskList));
+        setTaskList(defaultTaskList);
+      }
     }
-    const taskId = active.id as string;
-    const newColumnId = over.id as TaskType["columnId"];
-    setTaskList(() =>
-      taskList.map((task: TaskType) =>
-        taskId === task.id
-          ? {
-              ...task,
-              columnId: newColumnId,
-            }
-          : task
+  
+    function initColumnList() {
+      const columnListStored = localStorage.getItem(columnKey);
+      if (columnListStored) {
+        setColumnList(JSON.parse(columnListStored));
+      } else {
+  
+        localStorage.setItem(columnKey, JSON.stringify(defaultColumnList));
+        setColumnList(defaultColumnList);
+      }
+    }
+
+    initTaskList();
+    initColumnList();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(taskKey, JSON.stringify(taskList));
+  }, [taskList]);
+
+  useEffect(() => {
+    localStorage.setItem(columnKey, JSON.stringify(columnList));
+  }, [columnList]);
+
+  function updateTask(id: string, updates: Partial<TaskType>) {
+    setTaskList((prev) =>
+      prev.map((task) => (task.id === id ? { ...task, ...updates } : task))
+    );
+  }
+
+  function moveTask(taskId: string, newColumnId: string) {
+    setTaskList((prev) =>
+      prev.map((task) =>
+        task.id === taskId ? { ...task, columnId: newColumnId } : task
       )
     );
   }
 
-  function handleUpdateTask(id: string, updates: Partial<TaskType>) {
-    setTaskList(function (prevTasks) {
-      return prevTasks.map(function (task) {
-        if (task.id === id) {
-          console.log(updates);
-          return { ...task, ...updates };
-        }
-        return task;
-      });
-    });
+  function getTasksByColumn(columnId: string) {
+    return taskList.filter((task) => task.columnId === columnId);
   }
 
-  function getTaskListOfColumn(column: ColumnType, taskList: TaskType[]) {
-    return taskList.filter((task: TaskType) => task.columnId === column.id);
+  function addColumn() {
+    setColumnList([]);
   }
-  const stepList = props.columnList.map((column: ColumnType) => (
-    <Column
-      key={column.id}
-      column={column}
-      taskList={getTaskListOfColumn(column, taskList)}
-    />
-  ));
+
+  return {
+    taskList,
+    columnList,
+    updateTask,
+    moveTask,
+    getTasksByColumn,
+    addColumn,
+  };
+}
+
+export default function Board() {
+  const { columnList, updateTask, moveTask, getTasksByColumn } = useBoard();
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (!over) return;
+    moveTask(active.id as string, over.id as string);
+  }
 
   return (
-    <>
-      <div className="flex gap-4">
-        <DndContext onDragEnd={handleDragEnd}>
-          <TaskContext.Provider value={{ handleUpdateTask }}>
-            {stepList}
-          </TaskContext.Provider>
-        </DndContext>
-      </div>
-    </>
+    <div className="flex gap-4">
+      <DndContext onDragEnd={handleDragEnd}>
+        <TaskContext.Provider value={{ handleUpdateTask: updateTask }}>
+          {columnList.map((column) => (
+            <Column
+              key={column.id}
+              column={column}
+              taskList={getTasksByColumn(column.id)}
+            />
+          ))}
+        </TaskContext.Provider>
+      </DndContext>
+    </div>
   );
 }
