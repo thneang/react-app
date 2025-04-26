@@ -1,5 +1,5 @@
 import EditableDiv from "@/components/form/EditableDiv";
-import { useTaskContext } from "@/components/task-list/TaskContext";
+import { useBoardContext } from "@/components/task-list/board/BoardContext";
 import { TaskType } from "@/types/global";
 import { useDraggable } from "@dnd-kit/core";
 
@@ -8,7 +8,7 @@ export interface TaskProps {
 }
 
 export default function Task(props: TaskProps) {
-  const taskContext = useTaskContext();
+  const taskContext = useBoardContext();
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: props.task.id,
@@ -31,14 +31,14 @@ export default function Task(props: TaskProps) {
         <EditableDiv
           value={props.task.title}
           onBlur={(e) =>
-            taskContext.handleUpdateTask(props.task.id, { title: e.target.value })
+            taskContext.updateTask(props.task.id, { title: e.target.value })
           }
         ></EditableDiv>
         <EditableDiv
           value={props.task.description}
           onBlur={(e) =>
-            taskContext.handleUpdateTask(props.task.id, {
-              description: e.target.value
+            taskContext.updateTask(props.task.id, {
+              description: e.target.value,
             })
           }
         ></EditableDiv>

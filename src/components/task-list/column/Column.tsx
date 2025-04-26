@@ -1,4 +1,4 @@
-import Task from "@/components/task-list/Task";
+import Task from "@/components/task-list/task/Task";
 import { ColumnType, TaskType } from "@/types/global";
 import { useDroppable } from "@dnd-kit/core";
 
