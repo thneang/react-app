@@ -1,56 +1,39 @@
+import { ColumnActionType, columnReducer } from "@/components/task-list/column/columnReducer";
 import { getItemFromStorage, saveToStorage } from "@/lib/localstorage";
 import { ColumnType } from "@/types/global";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 
 export function useColumnData() {
-  const [columnList, setColumnList] = useState<ColumnType[]>([]);
+  const [columns, dispatch] = useReducer(columnReducer, []);
 
-  const columnKey = "columnList";
+  const columnKey = "columns";
 
   useEffect(() => {
-    const defaultColumnList: ColumnType[] = [
+    const defaultcolumns: ColumnType[] = [
       { id: "1", name: "TODO" },
       { id: "2", name: "In progress" },
     ];
 
-    function initColumnList() {
+    function initcolumns() {
       const columnData = getItemFromStorage(columnKey);
       if (columnData) {
-        setColumnList(columnData);
+        dispatch({type: ColumnActionType.INITIALIZE, columns: columnData });
       } else {
-        saveToStorage(columnKey, defaultColumnList);
-        setColumnList(defaultColumnList);
+        saveToStorage(columnKey, defaultcolumns);
+        dispatch({type: ColumnActionType.INITIALIZE, columns: defaultcolumns });
       }
     }
 
-    initColumnList();
+    initcolumns();
   }, []);
 
   useEffect(() => {
-    saveToStorage(columnKey, columnList);
-  }, [columnList]);
+    saveToStorage(columnKey, columns);
+  }, [columns]);
 
-  function updateColumn(id: string, updates: Partial<ColumnType>) {
-    setColumnList((prev: ColumnType[]) =>
-      prev.map((col) => (col.id === id ? { ...col, ...updates } : col))
-    );
-  }
 
-  function addColumn(column: ColumnType) {
-    setColumnList([...columnList, column]);
-  }
-
-  function deleteColumn(column: ColumnType) {
-    setColumnList(
-      columnList.filter((currentCol: ColumnType) => currentCol.id !== column.id)
-    );
-  }
-
-  return {
-    columnList,
-    updateColumn,
-    setColumnList,
-    addColumn,
-    deleteColumn,
-  };
+  return [
+    columns,
+    dispatch,
+  ] as const;
 }

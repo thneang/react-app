@@ -5,7 +5,7 @@ import { ColumnType } from "@/types/global";
 import { useBoardData } from "@/components/task-list/board/useBoardData";
 
 export default function Board() {
-  const { columnList, updateTask, moveTask, getTasksByColumn } = useBoardData();
+  const { columns, updateTask, moveTask, getTasksByColumn } = useBoardData();
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -17,7 +17,7 @@ export default function Board() {
     <div className="flex gap-4">
       <DndContext onDragEnd={handleDragEnd}>
         <BoardContext.Provider value={{ updateTask: updateTask }}>
-          {columnList.map((column: ColumnType) => (
+          {columns.map((column: ColumnType) => (
             <Column
               key={column.id}
               column={column}
