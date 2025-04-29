@@ -1,33 +1,33 @@
 import Column from "@/components/task-list/column/Column";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import {
-
-  columnKey,
-  ColumnList,
-  taskKey,
-  TaskList,
-} from "@/types/global";
-import { useEffect, useReducer } from "react";
-import { saveToStorage } from "@/lib/localstorage";
+import { ColumnList, TaskList } from "@/types/global";
+import { useReducer } from "react";
+import { StorageKey, useStorage } from "@/lib/localstorage";
 import { columnReducer } from "@/components/task-list/column/columnReducer";
-import { TaskActionType, taskReducer } from "@/components/task-list/task/taskReducer";
-import { ColumnContext, ColumnDispatchContext } from "@/components/task-list/column/ColumnContext";
-import { TaskContext, TaskDispatchContext } from "@/components/task-list/task/TaskContext";
+import {
+  TaskActionType,
+  taskReducer,
+} from "@/components/task-list/task/taskReducer";
+import {
+  ColumnContext,
+  ColumnDispatchContext,
+} from "@/components/task-list/column/ColumnContext";
+import {
+  TaskContext,
+  TaskDispatchContext,
+} from "@/components/task-list/task/TaskContext";
 interface BoardProps {
   columns: ColumnList;
   tasks: TaskList;
 }
 
 export default function Board(props: BoardProps) {
+  // TODO Refactoring in a BOARD context + add a board context provider ?
   const [columns, dispatchColumns] = useReducer(columnReducer, props.columns);
   const [tasks, dispatchTasks] = useReducer(taskReducer, props.tasks);
-  
-  useEffect(() => {
-    saveToStorage(columnKey, columns);
-  }, [columns]);
-  useEffect(() => {
-    saveToStorage(taskKey, tasks);
-  }, [tasks]);
+
+  useStorage(StorageKey.COLUMNS, columns);
+  useStorage(StorageKey.TASKS, tasks);
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -48,20 +48,17 @@ export default function Board(props: BoardProps) {
       />
     ));
 
-
   return (
     <div className="flex gap-4">
       <DndContext onDragEnd={handleDragEnd}>
         <ColumnContext.Provider value={columns}>
-        <ColumnDispatchContext value={dispatchColumns}>
-        <TaskContext value={tasks}>
-          <TaskDispatchContext value={dispatchTasks}>
-            {ColumnList()}
-          </TaskDispatchContext>
-
-        </TaskContext>
-        </ColumnDispatchContext>
-
+          <ColumnDispatchContext value={dispatchColumns}>
+            <TaskContext value={tasks}>
+              <TaskDispatchContext value={dispatchTasks}>
+                {ColumnList()}
+              </TaskDispatchContext>
+            </TaskContext>
+          </ColumnDispatchContext>
         </ColumnContext.Provider>
       </DndContext>
     </div>

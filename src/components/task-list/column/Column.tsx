@@ -1,4 +1,7 @@
 import Task from "@/components/task-list/task/Task";
+import { useTaskDispatchContext } from "@/components/task-list/task/TaskContext";
+import { addTask } from "@/lib/clients/boardClient";
+
 import { ColumnType, TaskType } from "@/types/global";
 import { useDroppable } from "@dnd-kit/core";
 
@@ -8,12 +11,13 @@ interface ColumnProps {
 }
 
 export default function Column(props: ColumnProps) {
+  const dispatchTask = useTaskDispatchContext();
   const { setNodeRef } = useDroppable({
     id: props.column.id,
   });
   
   const taskCards = props.tasks.map((task: TaskType) => (
-    <Task key={task.id} task={task} />
+    <li key={task.id}><Task key={task.id} task={task} /></li>
   ));
 
   return (
@@ -21,7 +25,8 @@ export default function Column(props: ColumnProps) {
       <div ref={setNodeRef} className="flex flex-col">
         <h2 className="self-center">{props.column.name}</h2>
         <ul className="border border-sky-500 p-2 space-y-4 lg:w-60">
-          <li className="flex flex-col space-y-2">{taskCards}</li>
+          {taskCards}
+          <li><button onClick={() => addTask(dispatchTask, props.column.id)}>Ajouter une tache</button></li>
         </ul>
       </div>
     </>

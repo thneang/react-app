@@ -13,5 +13,3 @@ export interface ColumnType {
 export type ColumnList = ColumnType[];
 export type TaskList = TaskType[];
 
-export const columnKey = "columns";
-export const taskKey = "tasks";
