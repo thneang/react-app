@@ -1,30 +1,11 @@
-import {
-  ColumnAction,
-} from "@/components/task-list/column/columnReducer";
-import { useColumnData } from "@/components/task-list/column/useColumnData";
-import { ColumnType } from "@/types/global";
-import {
-  createContext,
-  Dispatch,
-  PropsWithChildren,
-  useContext,
-} from "react";
+import { ColumnAction } from "@/components/task-list/column/columnReducer";
+import { ColumnList } from "@/types/global";
+import { createContext, Dispatch, useContext } from "react";
 
-export const ColumnContext = createContext<ColumnType[] | undefined>(undefined);
+export const ColumnContext = createContext<ColumnList | undefined>(undefined);
 export const ColumnDispatchContext = createContext<
   Dispatch<ColumnAction> | undefined
 >(undefined);
-
-export function ColumnContextProvicer({ children }: PropsWithChildren) {
-  const [columns, dispatch] = useColumnData();
-  return (
-    <ColumnContext.Provider value={columns}>
-      <ColumnDispatchContext.Provider value={dispatch}>
-        {children}
-      </ColumnDispatchContext.Provider>
-    </ColumnContext.Provider>
-  );
-}
 
 export function useColumnContext() {
   const context = useContext(ColumnContext);

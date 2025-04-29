@@ -4,7 +4,7 @@ import { useDroppable } from "@dnd-kit/core";
 
 interface ColumnProps {
   column: ColumnType;
-  taskList: TaskType[];
+  tasks: TaskType[];
 }
 
 export default function Column(props: ColumnProps) {
@@ -12,7 +12,7 @@ export default function Column(props: ColumnProps) {
     id: props.column.id,
   });
   
-  const taskCards = props.taskList.map((task: TaskType) => (
+  const taskCards = props.tasks.map((task: TaskType) => (
     <Task key={task.id} task={task} />
   ));
 

@@ -1,21 +1,35 @@
-import { TaskType } from "@/types/global";
+import { TaskList, TaskType } from "@/types/global";
 
-export enum TaskAction {
-    ADD,
-    REMOVE,
-    UPDATE,
-    MOVE_TO_COLUMN,
-    INITILIZE,
+export enum TaskActionType {
+  ADD,
+  REMOVE,
+  UPDATE,
+  MOVE_TO_COLUMN,
 }
 
-export type TaskActionType = 
-| {type: TaskAction.ADD, task: TaskType}
-| {type: TaskAction.INITILIZE, tasks: TaskType[]}
-| {type: TaskAction.UPDATE, task: TaskType}
-| {type: TaskAction.MOVE_TO_COLUMN, task:TaskType, columnId: string}
-| {type: TaskAction.UPDATE, task: TaskType}
+export type TaskAction =
+  | { type: TaskActionType.ADD; task: TaskType }
+  | { type: TaskActionType.REMOVE; taskId: string }
+  | { type: TaskActionType.MOVE_TO_COLUMN; taskId: string; newColumnId: string }
+  | { type: TaskActionType.UPDATE; task: TaskType };
 
-
-export function taskReducer() {
-
+export function taskReducer(tasks: TaskList, action: TaskAction) {
+  switch (action.type) {
+    case TaskActionType.ADD:
+      return [...tasks, action.task];
+    case TaskActionType.UPDATE:
+      return tasks.map((task) =>
+        task.id === action.task.id ? action.task : task
+      );
+    case TaskActionType.MOVE_TO_COLUMN:
+      return tasks.map((task) =>
+        task.id === action.taskId
+          ? { ...task, columnId: action.newColumnId }
+          : task
+      );
+    case TaskActionType.REMOVE:
+      return tasks.filter((task) => task.id !== action.taskId);
+    default:
+      throw Error("Action not implemented for taskReducer : " + action);
+  }
 }
