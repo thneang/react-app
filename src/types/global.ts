@@ -12,4 +12,3 @@ export interface ColumnType {
 
 export type ColumnList = ColumnType[];
 export type TaskList = TaskType[];
-

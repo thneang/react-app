@@ -39,14 +39,19 @@ export default function Board(props: BoardProps) {
     });
   }
 
-  const ColumnList = () =>
-    columns.map((column) => (
+  function renderColumnList() {
+    return columns.map((column) => (
       <Column
         key={column.id}
         column={column}
         tasks={tasks.filter((task) => task.columnId == column.id)}
       />
     ));
+  }
+
+  function renderAddColumn() {
+    return <div></div>;
+  }
 
   return (
     <div className="flex gap-4">
@@ -55,7 +60,8 @@ export default function Board(props: BoardProps) {
           <ColumnDispatchContext value={dispatchColumns}>
             <TaskContext value={tasks}>
               <TaskDispatchContext value={dispatchTasks}>
-                {ColumnList()}
+                {renderColumnList()}
+                {renderAddColumn()}
               </TaskDispatchContext>
             </TaskContext>
           </ColumnDispatchContext>
