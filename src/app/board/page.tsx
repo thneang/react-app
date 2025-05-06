@@ -14,7 +14,9 @@ export default function BoardPage() {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col gap-2">
+        <span><a href="https://github.com/thneang/react-app" target="_blank" className="link">https://github.com/thneang/react-app</a></span>
+        <br/>
         <Board columns={columns} tasks={tasks} />
       </div>
     </>
