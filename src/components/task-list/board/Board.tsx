@@ -1,33 +1,30 @@
+'use client';
 import Column from "@/components/task-list/column/Column";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import { ColumnList, TaskList } from "@/types/global";
-import { useReducer } from "react";
-import { StorageKey, useStorage } from "@/lib/localstorage";
-import { columnReducer } from "@/components/task-list/column/columnReducer";
-import {
-  TaskActionType,
-  taskReducer,
-} from "@/components/task-list/task/taskReducer";
 import {
   ColumnContext,
   ColumnDispatchContext,
 } from "@/components/task-list/column/ColumnContext";
+import { columnReducer } from "@/components/task-list/column/columnReducer";
 import {
   TaskContext,
   TaskDispatchContext,
 } from "@/components/task-list/task/TaskContext";
+import {
+  TaskActionType,
+  taskReducer,
+} from "@/components/task-list/task/taskReducer";
+import { StorageKey, useStorage } from "@/lib/localstorage";
+import { ColumnList, TaskList } from "@/types/global";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
 interface BoardProps {
   columns: ColumnList;
   tasks: TaskList;
 }
 
 export default function Board(props: BoardProps) {
-  // TODO Refactoring in a BOARD context + add a board context provider ?
-  const [columns, dispatchColumns] = useReducer(columnReducer, props.columns);
-  const [tasks, dispatchTasks] = useReducer(taskReducer, props.tasks);
-
-  useStorage(StorageKey.COLUMNS, columns);
-  useStorage(StorageKey.TASKS, tasks);
+  // Use a normal reducer if a database is used
+  const [columns, dispatchColumns] = useStorage(columnReducer, props.columns, StorageKey.COLUMNS);
+  const [tasks, dispatchTasks] = useStorage(taskReducer, props.tasks, StorageKey.TASKS);
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;

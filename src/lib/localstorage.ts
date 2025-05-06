@@ -1,5 +1,5 @@
-import { ColumnList, TaskList } from "@/types/global";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { ColumnList, ColumnType, TaskList, TaskType } from "@/types/global";
+import { Dispatch, SetStateAction, useEffect, useReducer, useState } from "react";
 
 export function saveToStorage(key: string, object: unknown) {
   if (object == undefined) {
@@ -16,17 +16,25 @@ export function getItemFromStorage(key: string) {
   return null;
 }
 
+export function removeItemFromStorage<T extends ColumnType | TaskType>(
+  key: StorageKey,
+  object: T
+) {
+  const list: T[] = getItemFromStorage(key);
+  list.filter((item) => item.id !== object.id);
+  saveToStorage(key, list);
+}
+
+export function addItemToStorage<T>(key: StorageKey, object: T) {
+  const list: T[] = getItemFromStorage(key);
+  list.push(object);
+  saveToStorage(key, list);
+}
+
 export enum StorageKey {
   COLUMNS = "columns",
   TASKS = "tasks",
 }
-
-export function useStorage<StateType>(key: StorageKey, state: StateType) {
-  useEffect(() => {
-    saveToStorage(key, state);
-  }, [key, state]);
-}
-
 const defaultcolumns: ColumnList = [
   { id: "1", name: "TODO" },
   { id: "2", name: "In progress" },
@@ -42,15 +50,15 @@ const defaultTaskList: TaskList = [
 // The Board component will hold the real state and interactivity
 // useEffect usage is the drawback when the render depends on the local storage
 export function useStorageInitialisation() {
-  const [columns, setColumns] = useState<ColumnList>(defaultcolumns);
-  const [tasks, setTasks] = useState<TaskList>(defaultTaskList);
+  const [columns, setColumns] = useState<ColumnList | undefined>(undefined);
+  const [tasks, setTasks] = useState<TaskList | undefined>(undefined);
   useEffect(() => {
     function init<StateType>(
       key: StorageKey,
       defaultData: StateType,
-      setState: Dispatch<SetStateAction<StateType>>
+      setState: Dispatch<SetStateAction<StateType | undefined>>
     ) {
-      const dataStored = getItemFromStorage(StorageKey.COLUMNS);
+      const dataStored = getItemFromStorage(key);
       if (dataStored) {
         setState(dataStored);
       } else {
@@ -62,4 +70,20 @@ export function useStorageInitialisation() {
     init(StorageKey.TASKS, defaultTaskList, setTasks);
   }, []);
   return [columns, tasks] as const;
+}
+
+
+/**
+ * 
+ * @param key The local Storage key where the value is stored
+ * @param value The value to initialize the state with
+ * @param reducer The reducer passed to useReducer
+ * @returns [state, dispatch]
+ */
+export function useStorage<T, A>(reducer: (state: T, action: A) => T, value: T, key: StorageKey) {
+  const [state, dispatch] = useReducer(reducer, value);
+  useEffect(() => {
+    saveToStorage(key, state);
+  }, [key, state]);
+  return [state, dispatch] as const;
 }

@@ -4,7 +4,7 @@ import { useColumnDispatchContext } from "@/components/task-list/column/ColumnCo
 import { ColumnActionType } from "@/components/task-list/column/columnReducer";
 import Task from "@/components/task-list/task/Task";
 import { useTaskDispatchContext } from "@/components/task-list/task/TaskContext";
-import { addTask } from "@/lib/clients/boardClient";
+import { addTask, removeColumn } from "@/lib/clients/boardClient";
 
 import { ColumnType, TaskType } from "@/types/global";
 import { useDroppable } from "@dnd-kit/core";
@@ -22,6 +22,7 @@ export default function Column(props: ColumnProps) {
     id: props.column.id,
   });
 
+  // Prevent the computing of the cardList when the column name change
   const renderTaskCards = useMemo(() => {
     return props.tasks.map((task: TaskType) => (
       <li key={task.id}>
@@ -34,12 +35,12 @@ export default function Column(props: ColumnProps) {
     <>
       <div
         ref={setNodeRef}
-        className="relative flex flex-col border border-sky-500 rounded-md"
+        className="relative flex flex-col border border-sky-500 rounded-md h-full"
       >
         {/* Column Title */}
         <div className="flex flex-row justify-between items-center p-2">
           <EditableDiv
-            className=" font-bold"
+            className="font-bold text-center w-full"
             value={props.column.name}
             onBlur={(e) =>
               dispatchColumns({
@@ -54,12 +55,7 @@ export default function Column(props: ColumnProps) {
               <Dropdown.DropdownList>
                 <Dropdown.DropdownItem>
                   <button
-                    onClick={() =>
-                      dispatchColumns({
-                        type: ColumnActionType.REMOVE,
-                        id: props.column.id,
-                      })
-                    }
+                    onClick={() => removeColumn(dispatchColumns, props.column)}
                   >
                     Supprimer la colonne
                   </button>
@@ -72,7 +68,10 @@ export default function Column(props: ColumnProps) {
         <ul className="p-2 space-y-4 lg:w-60">
           {renderTaskCards}
           <li>
-            <button onClick={() => addTask(dispatchTasks, props.column.id)}>
+            <button
+              className="w-full"
+              onClick={() => addTask(dispatchTasks, props.column.id)}
+            >
               Ajouter une tache
             </button>
           </li>

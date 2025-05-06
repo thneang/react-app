@@ -31,7 +31,8 @@ export default function EditableDiv(props: EditableDivProps) {
 
   function renderDiv() {
     /* Mouse up is used instead of onClick to not be in conflict with the drag and drop of the task card */
-    return <div className={props.className} onMouseUp={() => setIsEditable(true)}>{localValue}</div>;
+    return <div className={props.className} onMouseUp={() => setIsEditable(true)}>
+      {localValue}</div>;
   }
 
   function renderTextarea() {

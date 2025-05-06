@@ -9,7 +9,7 @@ export enum ColumnActionType {
 
 export type ColumnAction =
   | { type: ColumnActionType.ADD; column: ColumnType }
-  | { type: ColumnActionType.REMOVE; id: string }
+  | { type: ColumnActionType.REMOVE; column: ColumnType }
   | { type: ColumnActionType.UPDATE; column: ColumnType }
   | { type: ColumnActionType.INITIALIZE; columns: ColumnType[] };
 
@@ -18,7 +18,7 @@ export function columnReducer(columns: ColumnType[], action: ColumnAction) {
     case ColumnActionType.ADD:
       return [...columns, action.column];
     case ColumnActionType.REMOVE:
-      return columns.filter((column: ColumnType) => column.id !== action.id);
+      return columns.filter((column: ColumnType) => column.id !== action.column.id);
     case ColumnActionType.UPDATE:
       return columns.map((columns) =>
         columns.id === action.column.id ? action.column : columns

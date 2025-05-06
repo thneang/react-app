@@ -9,7 +9,7 @@ export enum TaskActionType {
 
 export type TaskAction =
   | { type: TaskActionType.ADD; task: TaskType }
-  | { type: TaskActionType.REMOVE; taskId: string }
+  | { type: TaskActionType.REMOVE; task: TaskType }
   | { type: TaskActionType.MOVE_TO_COLUMN; taskId: string; newColumnId: string }
   | { type: TaskActionType.UPDATE; task: TaskType };
 
@@ -28,7 +28,7 @@ export function taskReducer(tasks: TaskList, action: TaskAction) {
           : task
       );
     case TaskActionType.REMOVE:
-      return tasks.filter((task) => task.id !== action.taskId);
+      return tasks.filter((task) => task.id !== action.task.id);
     default:
       throw Error("Action not implemented for taskReducer : " + action);
   }

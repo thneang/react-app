@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Board from "@/components/task-list/board/Board";
 import {
   useStorageInitialisation

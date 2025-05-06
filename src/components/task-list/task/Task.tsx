@@ -24,12 +24,14 @@ export default function Task(props: TaskProps) {
     <>
       <div
         ref={setNodeRef}
+        onPointerDown={(e) => e.stopPropagation()}
         {...attributes}
         {...listeners}
         style={dragStyle}
-        className="flex flex-col border border-red-500 cursor-pointer"
+        className="flex flex-col border border-red-500 cursor-pointer p-2"
       >
         <EditableDiv
+        className="text-center"
           value={props.task.title}
           onBlur={(e) =>
             dispatch({type: TaskActionType.UPDATE, task: { ...props.task, title: e.target.value }})

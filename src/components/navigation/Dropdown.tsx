@@ -44,7 +44,7 @@ function DropdownButton({ children }: PropsWithChildren) {
 
 
 function DropDownItem({children}: PropsWithChildren) {
-    return <li className="cursor-pointer hover:bg-stone-700">
+    return <li className=" hover:bg-stone-700 text-sm">
         {children}
     </li>
 
