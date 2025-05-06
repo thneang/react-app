@@ -37,3 +37,7 @@ button {
 .bg-card-color {
   @apply bg-gray-300 dark:bg-zinc-800
 }
+
+.column-hover-color {
+  @apply hover:bg-gray-200 hover:dark:bg-cyan-800
+}

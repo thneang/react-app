@@ -61,7 +61,7 @@ export default function Board(props: BoardProps) {
       <div className="flex bg-column-color rounded-md h-[45px] justify-center items-center">
         <button
           onClick={() => addColumn(dispatchColumns)}
-          className="p-2 h-full w-full text-sm rounded-lg whitespace-nowrap"
+          className="p-2 h-full w-full text-sm column-hover-color rounded-lg whitespace-nowrap "
         >
           + Ajouter une colonne
         </button>
