@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 interface EditableDivProps {
   value: string;
   onBlur: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  className?: string
+  className?: string;
 }
 
 export default function EditableDiv(props: EditableDivProps) {
@@ -31,8 +31,11 @@ export default function EditableDiv(props: EditableDivProps) {
 
   function renderDiv() {
     /* Mouse up is used instead of onClick to not be in conflict with the drag and drop of the task card */
-    return <div className={props.className} onMouseUp={() => setIsEditable(true)}>
-      {localValue}</div>;
+    return (
+      <div className={props.className} onMouseUp={() => setIsEditable(true)}>
+        {localValue}
+      </div>
+    );
   }
 
   function renderTextarea() {
@@ -40,6 +43,9 @@ export default function EditableDiv(props: EditableDivProps) {
       <textarea
         ref={textareaRef}
         value={localValue}
+        onPointerDown={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
         onChange={(e) => setLocalValue(e.target.value)}
         onBlur={(e) => {
           handleBlur(e);

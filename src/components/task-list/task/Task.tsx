@@ -31,12 +31,12 @@ export default function Task(props: TaskProps) {
         {...attributes}
         {...listeners}
         style={dragStyle}
-        className="flex flex-col rounded-md bg-gray-300 dark:bg-zinc-800 shadow-lg cursor-pointer p-2 relative border border-transparent hover:border-inherit "
+        className="flex flex-col rounded-md bg-card-color shadow-lg cursor-pointer p-2 relative border border-transparent hover:border-inherit "
         {...mouseEventHandlers}
       >
         <HoverActions isActive={isHovered}>
           <button
-            className="bg-gray-300 dark:bg-zinc-800"
+            className="bg-card-color"
             onMouseUp={(e) => {
               e.stopPropagation();
               dispatch({ type: TaskActionType.REMOVE, task: props.task });

@@ -35,7 +35,7 @@ export default function Column(props: ColumnProps) {
     <>
       <div
         ref={setNodeRef}
-        className="relative flex flex-col border dark:border-none bg-background dark:bg-cyan-900 shadow-lg rounded-md h-full"
+        className="relative flex flex-col bg-column-color rounded-md h-full"
       >
         {/* Column Title */}
         <div className="flex flex-row justify-between items-center p-2">
@@ -55,6 +55,7 @@ export default function Column(props: ColumnProps) {
               <Dropdown.DropdownList>
                 <Dropdown.DropdownItem>
                   <button
+                  className="p-2 whitespace-nowrap text-sm"
                     onClick={() => removeColumn(dispatchColumns, props.column)}
                   >
                     Supprimer la colonne

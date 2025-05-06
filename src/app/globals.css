@@ -29,3 +29,11 @@ body {
 button {
   cursor: pointer;
 }
+
+.bg-column-color{
+@apply border dark:border-none dark:bg-cyan-900
+}
+
+.bg-card-color {
+  @apply bg-gray-300 dark:bg-zinc-800
+}

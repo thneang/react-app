@@ -55,17 +55,17 @@ export default function Board(props: BoardProps) {
         <ColumnDispatchContext value={dispatchColumns}>
           <TaskDispatchContext value={dispatchTasks}>
             {renderColumnList()}
-            <div className="relative flex flex-col border dark:border-none dark:bg-cyan-900 rounded-md w-[120px] h-|120px]">
-              <button
-                onClick={() => addColumn(dispatchColumns)}
-                className="w-full h-full  text-6xl flex justify-center items-center rounded-lg "
-              >
-                +
-              </button>
-            </div>
           </TaskDispatchContext>
         </ColumnDispatchContext>
       </DndContext>
+      <div className="flex bg-column-color rounded-md h-[45px] justify-center items-center">
+        <button
+          onClick={() => addColumn(dispatchColumns)}
+          className="p-2 h-full w-full text-sm rounded-lg whitespace-nowrap"
+        >
+          + Ajouter une colonne
+        </button>
+      </div>
     </div>
   );
 }
