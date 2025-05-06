@@ -19,6 +19,7 @@ export default function Task(props: TaskProps) {
   const dragStyle = transform
     ? {
         transform: `translate(${transform.x}px, ${transform.y}px)`,
+        zIndex: 1,
       }
     : undefined;
 
@@ -30,12 +31,12 @@ export default function Task(props: TaskProps) {
         {...attributes}
         {...listeners}
         style={dragStyle}
-        className="flex flex-col border border-red-500 cursor-pointer p-2 relative "
+        className="flex flex-col rounded-md bg-gray-300 dark:bg-zinc-800 shadow-lg cursor-pointer p-2 relative border border-transparent hover:border-inherit "
         {...mouseEventHandlers}
       >
         <HoverActions isActive={isHovered}>
           <button
-            className="bg-background"
+            className="bg-gray-300 dark:bg-zinc-800"
             onMouseUp={(e) => {
               e.stopPropagation();
               dispatch({ type: TaskActionType.REMOVE, task: props.task });
@@ -45,7 +46,7 @@ export default function Task(props: TaskProps) {
           </button>
         </HoverActions>
         <EditableDiv
-          className="text-center font-bold"
+          className="text-center font-bold border-b-1 p-1"
           value={props.task.title}
           onBlur={(e) =>
             dispatch({
@@ -56,6 +57,7 @@ export default function Task(props: TaskProps) {
         ></EditableDiv>
 
         <EditableDiv
+          className="p-2"
           value={props.task.description}
           onBlur={(e) =>
             dispatch({

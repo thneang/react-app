@@ -48,17 +48,17 @@ export default function Board(props: BoardProps) {
       />
     ));
   }
-  
+
   return (
     <div className="flex gap-4">
       <DndContext onDragEnd={handleDragEnd}>
         <ColumnDispatchContext value={dispatchColumns}>
           <TaskDispatchContext value={dispatchTasks}>
             {renderColumnList()}
-            <div className="relative flex flex-col border border-sky-500 rounded-md w-[120px] h-|120px]">
+            <div className="relative flex flex-col border dark:border-none dark:bg-cyan-900 rounded-md w-[120px] h-|120px]">
               <button
                 onClick={() => addColumn(dispatchColumns)}
-                className="w-full h-full text-stone-500 text-6xl flex justify-center items-center rounded-lg"
+                className="w-full h-full  text-6xl flex justify-center items-center rounded-lg "
               >
                 +
               </button>

@@ -15,8 +15,6 @@ export default function BoardPage() {
   return (
     <>
       <div>
-        Board page
-        <br />
         <Board columns={columns} tasks={tasks} />
       </div>
     </>

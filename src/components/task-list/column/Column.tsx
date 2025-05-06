@@ -35,7 +35,7 @@ export default function Column(props: ColumnProps) {
     <>
       <div
         ref={setNodeRef}
-        className="relative flex flex-col bg-background dark:bg-red-500 rounded-md h-full"
+        className="relative flex flex-col border dark:border-none bg-background dark:bg-cyan-900 shadow-lg rounded-md h-full"
       >
         {/* Column Title */}
         <div className="flex flex-row justify-between items-center p-2">
@@ -67,7 +67,7 @@ export default function Column(props: ColumnProps) {
 
         <ul className="p-2 space-y-4 lg:w-60">
           {renderTaskCards}
-          <li>
+          <li className="border-t p-2 pb-0">
             <button
               className="w-full"
               onClick={() => addTask(dispatchTasks, props.column.id)}
