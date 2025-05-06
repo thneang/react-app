@@ -1,10 +1,16 @@
 import { PropsWithChildren } from "react";
 
-export function HoverActions({children}: PropsWithChildren ) {
-
-    return <>
-     {
-        children && <div className="absolute border-2 border-amber-300 right-[10px] cursor-pointer">{children}</div>
-     }
+interface HoverActionsProps {
+    isActive: boolean
+}
+export function HoverActions({ children, isActive }: PropsWithChildren & HoverActionsProps) {
+  return (
+    <>
+      {children && isActive && (
+        <div className="absolute right-[5px] z-1">
+          {children}
+        </div>
+      )}
     </>
+  );
 }

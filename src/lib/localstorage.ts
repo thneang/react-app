@@ -40,10 +40,10 @@ const defaultcolumns: ColumnList = [
   { id: "2", name: "In progress" },
 ];
 const defaultTaskList: TaskList = [
-  { id: "1", title: "title 1", description: "task 1", columnId: "1" },
-  { id: "2", title: "title 2", description: "task 2", columnId: "2" },
-  { id: "3", title: "title 3", description: "task 3", columnId: "1" },
-  { id: "4", title: "title 4", description: "task 4", columnId: "2" },
+  { id: "1", title: "Tuto 1", description: "Cliquez sur le texte pour le modifier", columnId: "1" },
+  { id: "2", title: "Tuto 2", description: "Vous pouvez glisser et déposer vos tâches d'une colonne à l'autre", columnId: "1" },
+  { id: "3", title: "Tuto 3", description: "Essayez de déplacer un ticket ici", columnId: "2" },
+  { id: "4", title: "Cliquez ici pour modifier le titre", description: "Petite description", columnId: "2" },
 ];
 
 // Local state just to preload the initial data for components

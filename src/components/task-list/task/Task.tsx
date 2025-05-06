@@ -1,6 +1,8 @@
 import EditableDiv from "@/components/form/EditableDiv";
+import { HoverActions } from "@/components/navigation/HoverActions";
 import { useTaskDispatchContext } from "@/components/task-list/task/TaskContext";
 import { TaskActionType } from "@/components/task-list/task/taskReducer";
+import { useHover } from "@/lib/hooks/useHover";
 import { TaskType } from "@/types/global";
 import { useDraggable } from "@dnd-kit/core";
 
@@ -10,7 +12,7 @@ export interface TaskProps {
 
 export default function Task(props: TaskProps) {
   const dispatch = useTaskDispatchContext();
-
+  const { isHovered, mouseEventHandlers } = useHover();
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: props.task.id,
   });
@@ -28,19 +30,38 @@ export default function Task(props: TaskProps) {
         {...attributes}
         {...listeners}
         style={dragStyle}
-        className="flex flex-col border border-red-500 cursor-pointer p-2"
+        className="flex flex-col border border-red-500 cursor-pointer p-2 relative "
+        {...mouseEventHandlers}
       >
+        <HoverActions isActive={isHovered}>
+          <button
+            className="bg-background"
+            onMouseUp={(e) => {
+              e.stopPropagation();
+              dispatch({ type: TaskActionType.REMOVE, task: props.task });
+            }}
+          >
+            ❌
+          </button>
+        </HoverActions>
         <EditableDiv
-        className="text-center"
+          className="text-center font-bold"
           value={props.task.title}
           onBlur={(e) =>
-            dispatch({type: TaskActionType.UPDATE, task: { ...props.task, title: e.target.value }})
+            dispatch({
+              type: TaskActionType.UPDATE,
+              task: { ...props.task, title: e.target.value },
+            })
           }
         ></EditableDiv>
+
         <EditableDiv
           value={props.task.description}
           onBlur={(e) =>
-            dispatch({type: TaskActionType.UPDATE, task: { ...props.task, description: e.target.value }})
+            dispatch({
+              type: TaskActionType.UPDATE,
+              task: { ...props.task, description: e.target.value },
+            })
           }
         ></EditableDiv>
       </div>

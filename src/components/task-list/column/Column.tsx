@@ -35,7 +35,7 @@ export default function Column(props: ColumnProps) {
     <>
       <div
         ref={setNodeRef}
-        className="relative flex flex-col border border-sky-500 rounded-md h-full"
+        className="relative flex flex-col bg-background dark:bg-red-500 rounded-md h-full"
       >
         {/* Column Title */}
         <div className="flex flex-row justify-between items-center p-2">
