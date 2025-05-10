@@ -1,4 +1,5 @@
 'use client'
+import Waves from "@/components/animations/Waves";
 import Board from "@/components/task-list/board/Board";
 import {
   useStorageInitialisation
@@ -18,6 +19,7 @@ export default function BoardPage() {
         <span><a href="https://github.com/thneang/react-app" target="_blank" className="link">https://github.com/thneang/react-app</a></span>
         <br/>
         <Board columns={columns} tasks={tasks} />
+        <Waves></Waves>
       </div>
     </>
   );

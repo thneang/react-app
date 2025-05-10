@@ -1,5 +1,5 @@
 import { useActive, UseActiveType } from "@/lib/hooks/useActive";
-import { createContext, PropsWithChildren, useContext, useRef } from "react";
+import { createContext, PropsWithChildren, useContext } from "react";
 
 const DropdownContext = createContext<UseActiveType | undefined>(undefined);
 
@@ -17,9 +17,29 @@ export function Dropdown({
 }: PropsWithChildren & { className?: string }) {
   const { isActive, setIsActive, onClickHandler } = useActive();
 
+  // const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Give some leeway to the user when leaving the dropdown
+  function handleMouseLeave() {
+    // timeoutRef.current = setTimeout(() => {
+    //   setIsActive(false);
+    // }, 300);
+  }
+
+  function handleMouseEnter() {
+    // if (timeoutRef.current) {
+    //   clearTimeout(timeoutRef.current);
+    //   timeoutRef.current = null;
+    // }
+  }
+
   return (
     <DropdownContext.Provider value={{ isActive, setIsActive, onClickHandler }}>
-      <div className={"relative inline-block cursor-pointer " + className}>
+      <div
+        className={"cursor-pointer " + className}
+        onMouseLeave={() => handleMouseLeave()}
+        onMouseEnter={() => handleMouseEnter()}
+      >
         {children}
       </div>
     </DropdownContext.Provider>
@@ -28,7 +48,7 @@ export function Dropdown({
 
 function DropdownIcon({ children }: PropsWithChildren) {
   const { onClickHandler } = useDropdownContext();
-  return <div {...onClickHandler}>{children}</div>;
+  return (<div {...onClickHandler}>{children}</div>);
 }
 
 function DropdownButton({ children }: PropsWithChildren) {
@@ -42,47 +62,20 @@ function DropdownButton({ children }: PropsWithChildren) {
   );
 }
 
-
-function DropDownItem({children}: PropsWithChildren) {
-    return <li className=" hover:bg-stone-700 text-sm">
-        {children}
-    </li>
-
+function DropDownItem({ children }: PropsWithChildren) {
+  return (<li className=" hover:bg-stone-700 text-sm">{children}</li>);
 }
 
-function DropDownList({children}: PropsWithChildren) {
-    return <ul>
-        {children}
-    </ul>
-
+function DropDownList({ children }: PropsWithChildren) {
+  return (<ul className="">{children}</ul>);
 }
 
 function DropdownContent({ children }: PropsWithChildren) {
-  const { isActive, setIsActive } = useDropdownContext();
-
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-//   Give some leeway to the user when leaving the dropdown
-  function handleMouseLeave() {
-    timeoutRef.current = setTimeout(() => {
-      setIsActive(false);
-    }, 300);
-  }
-
-  function handleMouseEnter() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  }
+  const { isActive } = useDropdownContext();
   return (
     <>
       {isActive && (
-        <div
-          onMouseLeave={() => handleMouseLeave()}
-          onMouseEnter={() => handleMouseEnter()}
-          className="bg-stone-900 text-white absolute z-1 shadow-sm min-w-[160px] p-2 translate-x-[-45%] transition duration"
-        >
+        <div className="absolute bg-stone-900 text-white shadow-sm min-w-[160px] p-2 translate-x-[-45%] z-10">
           {children}
         </div>
       )}

@@ -25,9 +25,9 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="h-screen">
-        <div className={`sticky md:block w-48 bg-blue-500 dark:bg-blue-900 p-5 h-full`}>
-          <div className="">{menuElement}</div>
+      <div className="sticky w-48">
+        <div className="fixed w-48 h-screen bg-navbar-color">
+          <div className="p-5">{menuElement}</div>
         </div>
       </div>
     </>

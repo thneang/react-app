@@ -18,7 +18,7 @@ export default function Task(props: TaskProps) {
   });
   const dragStyle = transform
     ? {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
+        transform: `translate(${transform.x}px, ${transform.y}px) rotate(5deg)`,
         zIndex: 1,
       }
     : undefined;
@@ -31,7 +31,7 @@ export default function Task(props: TaskProps) {
         {...attributes}
         {...listeners}
         style={dragStyle}
-        className="flex flex-col rounded-md bg-card-color shadow-lg cursor-pointer p-2 relative border border-transparent hover:border-inherit "
+        className="flex flex-col rounded-md bg-card-color shadow-md cursor-pointer p-2 relative hover:ring-2 "
         {...mouseEventHandlers}
       >
         <HoverActions isActive={isHovered}>

@@ -8,13 +8,67 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-column-background: #ededed;
+  --color-card-background: #dfdfdf;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+@layer utilities {
+  .animate-floating-1 {
+    animation: floating-1 3s ease-in-out infinite;
+  }
+  .animate-floating-2 {
+    animation: floating-2 3s ease-in-out infinite;
+  }
+  .animate-floating-3 {
+    animation: floating-3 3s ease-in-out infinite;
+  }
+
+  @keyframes floating-1 {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  @keyframes floating-2 {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+  }
+  @keyframes floating-3 {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(7px);
+    }
+  }
+
+  .animate-to-right {
+    animation: revealToRight 2s ease-in-out forwards;
+  }
+  @keyframes revealToRight {
+    0% {
+      clippath: inset(0 100% 0 0);
+    }
+    100% {
+      clippath: inset(0 0 0 0);
+    }
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #171717;
     --foreground: #ededed;
   }
 }
@@ -31,21 +85,25 @@ button {
 }
 
 a {
-  @apply hover:underline
+  @apply hover:underline;
 }
 
 .link {
-  @apply text-blue-500 hover:text-blue-700 hover:underline
+  @apply text-blue-500 hover:text-blue-700 hover:underline;
 }
 
-.bg-column-color{
-@apply border dark:border-none dark:bg-cyan-900
+.bg-navbar-color {
+  @apply bg-blue-500 dark:bg-cyan-950;
+}
+
+.bg-column-color {
+  @apply border dark:border-none bg-column-background dark:bg-cyan-900 shadow-lg;
 }
 
 .bg-card-color {
-  @apply bg-gray-300 dark:bg-zinc-800
+  @apply bg-card-background dark:bg-zinc-800;
 }
 
 .column-hover-color {
-  @apply hover:bg-gray-200 hover:dark:bg-cyan-800
+  @apply hover:bg-gray-200 hover:dark:bg-cyan-800;
 }
