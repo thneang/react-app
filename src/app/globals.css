@@ -3,11 +3,33 @@
 :root {
   --background: #f5f5f5;
   --foreground: #171717;
+  --title: var(--color-blue-500);
+  --card-background-color: #dfdfdf;
+}
+
+.theme-dark {
+  --background: #171717;
+  --foreground: #ededed;
+}
+
+/* Use the user's preference for the rest */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #171717;
+    --foreground: #ededed;
+  }
+} */
+/* Enable manual control of the dark mode to force it on the first page. */
+@custom-variant dark (&:where(.dark, .dark *));
+.dark {
+  --background: #171717;
+  --foreground: #ededed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-black: #171717;
   --color-column-background: #ededed;
   --color-card-background: #dfdfdf;
   --font-sans: var(--font-geist-sans);
@@ -52,25 +74,6 @@
       transform: translateY(7px);
     }
   }
-
-  .animate-to-right {
-    animation: revealToRight 2s ease-in-out forwards;
-  }
-  @keyframes revealToRight {
-    0% {
-      clippath: inset(0 100% 0 0);
-    }
-    100% {
-      clippath: inset(0 0 0 0);
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #171717;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -84,16 +87,8 @@ button {
   cursor: pointer;
 }
 
-a {
-  @apply hover:underline;
-}
-
 .link {
   @apply text-blue-500 hover:text-blue-700 hover:underline;
-}
-
-.bg-navbar-color {
-  @apply bg-blue-500 dark:bg-cyan-950;
 }
 
 .bg-column-color {
@@ -106,4 +101,11 @@ a {
 
 .column-hover-color {
   @apply hover:bg-gray-200 hover:dark:bg-cyan-800;
+}
+
+section:first-of-type {
+  @apply bg-transparent;
+}
+section > div {
+  @apply mx-auto flex flex-col w-3/4 gap-4 pt-16;
 }

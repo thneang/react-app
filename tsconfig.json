@@ -20,9 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "types": ["@types/three"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

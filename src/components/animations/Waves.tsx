@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, CSSProperties, useState } from "react";
+import React, { CSSProperties, useEffect, useRef } from "react";
 
 class Grad {
   x: number;
@@ -163,7 +163,7 @@ const Waves: React.FC<WavesProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const [isDark, setIsDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
+  // const [isDark, setIsDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
   const boundingRef = useRef<{
     width: number;
     height: number;
@@ -205,25 +205,26 @@ const Waves: React.FC<WavesProps> = ({
 
   const frameIdRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
   
-    setIsDark(mediaQuery.matches);
+  //   setIsDark(mediaQuery.matches);
   
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsDark(event.matches);
-    };
+  //   const handleChange = (event: MediaQueryListEvent) => {
+  //     setIsDark(event.matches);
+  //   };
   
-    mediaQuery.addEventListener("change", handleChange);
+  //   mediaQuery.addEventListener("change", handleChange);
   
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
-  }, []);
+  //   return () => {
+  //     mediaQuery.removeEventListener("change", handleChange);
+  //   };
+  // }, []);
 
   useEffect(() => {
     configRef.current = {
-      lineColor: isDark? lineColor : '#cad0d9',
+      // lineColor: isDark? lineColor : '#cad0d9',
+      lineColor: lineColor,
       waveSpeedX,
       waveSpeedY,
       waveAmpX,
@@ -235,7 +236,7 @@ const Waves: React.FC<WavesProps> = ({
       yGap,
     };
   }, [
-    isDark,
+    // isDark,
     lineColor,
     waveSpeedX,
     waveSpeedY,

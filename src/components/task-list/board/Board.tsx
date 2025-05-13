@@ -1,4 +1,3 @@
-"use client";
 import Column from "@/components/task-list/column/Column";
 import { ColumnDispatchContext } from "@/components/task-list/column/ColumnContext";
 import { columnReducer } from "@/components/task-list/column/columnReducer";

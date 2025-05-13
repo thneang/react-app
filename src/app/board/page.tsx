@@ -1,12 +1,10 @@
-'use client'
+"use client";
 import Waves from "@/components/animations/Waves";
 import Board from "@/components/task-list/board/Board";
-import {
-  useStorageInitialisation
-} from "@/lib/localstorage";
+import { useStorageInitialisation } from "@/lib/localstorage";
+
 
 export default function BoardPage() {
-  
   const [columns, tasks] = useStorageInitialisation();
 
   if (!columns || !tasks) {
@@ -15,9 +13,8 @@ export default function BoardPage() {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
-        <span><a href="https://github.com/thneang/react-app" target="_blank" className="link">https://github.com/thneang/react-app</a></span>
-        <br/>
+      <div className="flex flex-col gap-2 p-5">
+        <br />
         <Board columns={columns} tasks={tasks} />
         <Waves></Waves>
       </div>
