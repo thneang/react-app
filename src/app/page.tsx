@@ -1,7 +1,9 @@
 "use client";
 import { Background } from "@/components/animations/Background";
 import { AnimatedTitle } from "@/components/blog/AnimatedTitle";
+import { Project } from "@/components/blog/projects/Projects";
 import { Section } from "@/components/blog/Section";
+import { ContactForm } from "@/components/form/ContactForm";
 import { useEffect, useState } from "react";
 
 const sections = {
@@ -48,7 +50,13 @@ export default function HomePage() {
       <Background />
       <Section id={sections.home.id} className="bg-transparent">
         <AnimatedTitle
-          texts={["Thomas Neang", "Développeur fullstack polyvalent"]}
+          className="text-3xl"
+          texts={[
+            "Thomas Neang",
+            "Développeur fullstack JS",
+            "Créateur d'interface responsive",
+            "Intégrateur backend avancé",
+          ]}
         />
         <span>
           Cillum do incididunt esse eu magna proident Lorem. Ea nostrud ex
@@ -63,7 +71,7 @@ export default function HomePage() {
           est.
         </span>
       </Section>
-      <Section id={sections.about.id} label={sections.about.label} className="scrollable-section">
+      <Section id={sections.about.id} label="À propos">
         <span>
           Consectetur est officia culpa consectetur voluptate aute consequat
           sint sunt eiusmod magna adipisicing amet et. Commodo voluptate ullamco
@@ -85,10 +93,14 @@ export default function HomePage() {
         </span>
       </Section>
 
-      <Section id={sections.projects.id} className="scrollable-section">
-        <a href="/board" target="_blank">
-          Tableau
-        </a>
+      <Section id={sections.projects.id} label={sections.projects.label}>
+        <Project></Project>
+      </Section>
+
+      <Section id={sections.contact.id} label={sections.contact.label}>
+        <div className="w-full flex justify-center">
+          <ContactForm />
+        </div>
       </Section>
     </>
   );

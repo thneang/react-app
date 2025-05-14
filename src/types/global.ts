@@ -7,8 +7,14 @@ export interface TaskType {
 
 export interface ColumnType {
   id: string;
-  name: string; 
+  name: string;
 }
 
 export type ColumnList = ColumnType[];
 export type TaskList = TaskType[];
+
+export enum Tag {
+  FRONT = "FRONT",
+  BACK = "BACK",
+  DEVOPS = "DEVOPS",
+}
