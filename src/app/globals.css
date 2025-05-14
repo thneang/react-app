@@ -106,6 +106,9 @@ button {
 section:first-of-type {
   @apply bg-transparent;
 }
-section > div {
-  @apply mx-auto flex flex-col w-3/4 gap-4 pt-16;
+section {
+  @apply bg-background scroll-mt-10 p-4;
+}
+section > div, section > h1 {
+  @apply mx-auto flex flex-col w-3/4 gap-4 mt-4;
 }

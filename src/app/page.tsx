@@ -2,20 +2,39 @@
 import { Background } from "@/components/animations/Background";
 import { AnimatedTitle } from "@/components/blog/AnimatedTitle";
 import { Section } from "@/components/blog/Section";
+import { useEffect, useState } from "react";
 
-const sections = [
-  { id: "home", label: "Accueil" },
-  { id: "about", label: "À propos" },
-  { id: "projects", label: "Projets" },
-  { id: "contact", label: "Contact" },
-];
+const sections = {
+  home: { id: "home", label: "Accueil" },
+  about: { id: "about", label: "À propos" },
+  projects: { id: "projects", label: "Projets" },
+  contact: { id: "contact", label: "Contact" },
+} as const;
 
 export default function HomePage() {
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = window.innerHeight / 2;
+      setScrolledPastHero(window.scrollY > threshold);
+    };
+
+    handleScroll(); // Appel initial
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
-      <header className="fixed right-0 top-0 w-full shadow z-50 bg-blue-500 dark:bg-cyan-950">
+      <header
+        className={`fixed right-0 top-0 w-full shadow z-50 transition-all duration-700 ${
+          scrolledPastHero
+            ? "bg-cyan-950/80 shadow-md backdrop-blur-md"
+            : "bg-transparent"
+        } `}
+      >
         <nav className="flex space-x-4 p-4 justify-center">
-          {sections.map(({ id, label }) => (
+          {Object.values(sections).map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
@@ -26,65 +45,50 @@ export default function HomePage() {
           ))}
         </nav>
       </header>
-      <Section id="home">
-        <Background />
-        <div className="align-center ">
-          <AnimatedTitle
-            texts={["Thomas Neang", "Développeur fullstack polyvalent"]}
-          />
-          <span>
-            Consectetur est officia culpa consectetur voluptate aute consequat
-            sint sunt eiusmod magna adipisicing amet et. Commodo voluptate
-            ullamco laborum sunt officia voluptate excepteur et et veniam. Est
-            fugiat ea anim culpa magna. Id pariatur adipisicing et eiusmod est
-            commodo ea exercitation. In consequat fugiat eu mollit nostrud culpa
-            irure est in pariatur. Eiusmod nulla ipsum reprehenderit laboris.
-            Officia qui aute anim voluptate mollit est proident ipsum
-            incididunt. Magna cupidatat cupidatat nulla tempor culpa labore sit
-            duis proident. Eu consequat velit in commodo cillum veniam laborum
-            tempor laboris quis aliqua exercitation ipsum enim. Officia
-            reprehenderit consectetur veniam magna ut incididunt nulla cillum ad
-            in sit in mollit reprehenderit. Ullamco cillum aliqua et amet
-            officia est ullamco amet consequat officia laborum culpa. Nostrud
-            reprehenderit magna magna commodo esse ea et occaecat sint deserunt
-            esse officia esse incididunt. Consectetur elit do incididunt ullamco
-            eiusmod ipsum anim adipisicing irure do enim irure aute. Elit ad
-            cupidatat laboris fugiat in. Ipsum irure proident est ex ut tempor
-            consectetur aliqua.
-          </span>
-        </div>
+      <Background />
+      <Section id={sections.home.id} className="bg-transparent">
+        <AnimatedTitle
+          texts={["Thomas Neang", "Développeur fullstack polyvalent"]}
+        />
+        <span>
+          Cillum do incididunt esse eu magna proident Lorem. Ea nostrud ex
+          aliquip anim sint aute nostrud do sit enim consequat nostrud nostrud.
+          Laboris commodo ad voluptate occaecat Lorem dolore consequat ut ipsum
+          cupidatat et excepteur adipisicing. Aliqua anim ipsum ea enim ullamco
+          do non sunt quis dolor. Sunt sint ut laboris exercitation magna
+          eiusmod ut cillum. Duis ex occaecat pariatur ex non labore officia
+          adipisicing fugiat velit ipsum non sint. Aliqua officia ea in aliquip
+          nisi. Dolore aliqua pariatur Lorem pariatur Lorem ea do deserunt qui
+          quis duis excepteur laboris. Labore velit ullamco officia pariatur
+          est.
+        </span>
       </Section>
-      <Section id="about" className="bg-background">
-        <div className="flex flex-col">
-          <h1 className="text-2xl font-bold">À propos</h1>
-          <span>
-            Consectetur est officia culpa consectetur voluptate aute consequat
-            sint sunt eiusmod magna adipisicing amet et. Commodo voluptate
-            ullamco laborum sunt officia voluptate excepteur et et veniam. Est
-            fugiat ea anim culpa magna. Id pariatur adipisicing et eiusmod est
-            commodo ea exercitation. In consequat fugiat eu mollit nostrud culpa
-            irure est in pariatur. Eiusmod nulla ipsum reprehenderit laboris.
-            Officia qui aute anim voluptate mollit est proident ipsum
-            incididunt. Magna cupidatat cupidatat nulla tempor culpa labore sit
-            duis proident. Eu consequat velit in commodo cillum veniam laborum
-            tempor laboris quis aliqua exercitation ipsum enim. Officia
-            reprehenderit consectetur veniam magna ut incididunt nulla cillum ad
-            in sit in mollit reprehenderit. Ullamco cillum aliqua et amet
-            officia est ullamco amet consequat officia laborum culpa. Nostrud
-            reprehenderit magna magna commodo esse ea et occaecat sint deserunt
-            esse officia esse incididunt. Consectetur elit do incididunt ullamco
-            eiusmod ipsum anim adipisicing irure do enim irure aute. Elit ad
-            cupidatat laboris fugiat in. Ipsum irure proident est ex ut tempor
-            consectetur aliqua.
-          </span>
-        </div>
+      <Section id={sections.about.id} label={sections.about.label} className="scrollable-section">
+        <span>
+          Consectetur est officia culpa consectetur voluptate aute consequat
+          sint sunt eiusmod magna adipisicing amet et. Commodo voluptate ullamco
+          laborum sunt officia voluptate excepteur et et veniam. Est fugiat ea
+          anim culpa magna. Id pariatur adipisicing et eiusmod est commodo ea
+          exercitation. In consequat fugiat eu mollit nostrud culpa irure est in
+          pariatur. Eiusmod nulla ipsum reprehenderit laboris. Officia qui aute
+          anim voluptate mollit est proident ipsum incididunt. Magna cupidatat
+          cupidatat nulla tempor culpa labore sit duis proident. Eu consequat
+          velit in commodo cillum veniam laborum tempor laboris quis aliqua
+          exercitation ipsum enim. Officia reprehenderit consectetur veniam
+          magna ut incididunt nulla cillum ad in sit in mollit reprehenderit.
+          Ullamco cillum aliqua et amet officia est ullamco amet consequat
+          officia laborum culpa. Nostrud reprehenderit magna magna commodo esse
+          ea et occaecat sint deserunt esse officia esse incididunt. Consectetur
+          elit do incididunt ullamco eiusmod ipsum anim adipisicing irure do
+          enim irure aute. Elit ad cupidatat laboris fugiat in. Ipsum irure
+          proident est ex ut tempor consectetur aliqua.
+        </span>
       </Section>
-      <Section id="projects">
-        <div className="flex flex-col">
-          <a href="/board" target="_blank">
-            Tableau
-          </a>
-        </div>
+
+      <Section id={sections.projects.id} className="scrollable-section">
+        <a href="/board" target="_blank">
+          Tableau
+        </a>
       </Section>
     </>
   );

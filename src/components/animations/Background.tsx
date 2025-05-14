@@ -43,7 +43,7 @@ export function Background() {
         id="tsparticles"
         particlesLoaded={particlesLoaded}
         options={options}
-        className={"absolute"}
+        className={"fixed top-0 left-0 w-screen h-screen -z-10"}
       />
     );
   }

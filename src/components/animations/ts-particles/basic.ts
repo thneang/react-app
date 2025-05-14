@@ -2,7 +2,7 @@ import { MoveDirection, OutMode } from "@tsparticles/engine";
 export const basicOption = {
   background: {
     color: {
-      value: "transparent",
+      value: "#000000",
     },
   },
   fpsLimit: 120,
