@@ -18,3 +18,9 @@ export enum Tag {
   BACK = "BACK",
   DEVOPS = "DEVOPS",
 }
+export interface SectionMapType {
+  [key: string]: {
+    id: string;
+    label: string;
+  };
+}

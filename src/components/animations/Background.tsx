@@ -1,7 +1,4 @@
-'use client';
-import {
-  type Container
-} from "@tsparticles/engine";
+"use client";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
@@ -21,6 +18,9 @@ export function Background() {
       // starting from v2 you can add only the features you need reducing the bundle size
       //await loadAll(engine);
       //await loadFull(engine);
+      const isMobile = window.innerWidth < 768;
+      const fps = isMobile ? 30 : 60;
+      basicOption.fpsLimit = fps;
       await loadSlim(engine);
       // await loadBasic(engine);
     }).then(() => {
@@ -28,20 +28,17 @@ export function Background() {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
+  // const particlesLoaded = async (container?: Container): Promise<void> => {
+  //   console.log(container);
+  // };
 
-  const options = useMemo(
-    () => (basicOption),
-    [],
-  );
+  const options = useMemo(() => basicOption, []);
 
   if (init) {
     return (
       <Particles
         id="tsparticles"
-        particlesLoaded={particlesLoaded}
+        // particlesLoaded={particlesLoaded}
         options={options}
         className={"fixed top-0 left-0 w-screen h-screen -z-10"}
       />

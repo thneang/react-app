@@ -83,10 +83,6 @@ body {
   height: 100%;
 }
 
-button {
-  cursor: pointer;
-}
-
 .link {
   @apply text-blue-500 hover:text-blue-700 hover:underline;
 }
@@ -103,12 +99,16 @@ button {
   @apply hover:bg-gray-200 hover:dark:bg-cyan-800;
 }
 
-section:first-of-type {
-  @apply bg-transparent;
+.section {
+  @apply bg-background p-4 scroll-mt-14;
 }
-section {
-  @apply bg-background scroll-mt-10 p-4;
-}
-section > div, section > h1 {
+
+.centered {
   @apply mx-auto flex flex-col w-3/4 gap-4 mt-4;
+}
+
+.button {
+  @apply rounded-md bg-cyan-950 px-4 py-2 text-sm font-medium 
+  text-white shadow-sm hover:bg-cyan-800 focus:outline-none focus:ring-2
+   focus:ring-cyan-500 focus:ring-offset-2 cursor-pointer inline-block;
 }

@@ -1,106 +1,101 @@
-"use client";
 import { Background } from "@/components/animations/Background";
+import { AnimatedContainer } from "@/components/blog/AnimatedContainer";
 import { AnimatedTitle } from "@/components/blog/AnimatedTitle";
 import { Project } from "@/components/blog/projects/Projects";
 import { Section } from "@/components/blog/Section";
 import { ContactForm } from "@/components/form/ContactForm";
-import { useEffect, useState } from "react";
+import { AnchorButton } from "@/components/navigation/AnchorButton";
+import { TopNavbar } from "@/components/navigation/TopNavbar";
 
 const sections = {
   home: { id: "home", label: "Accueil" },
-  about: { id: "about", label: "À propos" },
+  about: { id: "about", label: "Mon Parcours" },
   projects: { id: "projects", label: "Projets" },
   contact: { id: "contact", label: "Contact" },
 } as const;
-
-export default function HomePage() {
-  const [scrolledPastHero, setScrolledPastHero] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const threshold = window.innerHeight / 2;
-      setScrolledPastHero(window.scrollY > threshold);
-    };
-
-    handleScroll(); // Appel initial
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+// Server components here to pre render the page and hydrate after with client
+// Do not make it a client component for SEO purposes
+export default async function HomePage() {
+  const CVPath = "/CV_Thomas_Neang.pdf";
   return (
     <>
-      <header
-        className={`fixed right-0 top-0 w-full shadow z-50 transition-all duration-700 ${
-          scrolledPastHero
-            ? "bg-cyan-950/80 shadow-md backdrop-blur-md"
-            : "bg-transparent"
-        } `}
-      >
-        <nav className="flex space-x-4 p-4 justify-center">
-          {Object.values(sections).map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="text-foreground  hover:text-shadow-sm hover:text-shadow-cyan-500"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </header>
+      <TopNavbar sections={sections} />
       <Background />
-      <Section id={sections.home.id} className="bg-transparent">
-        <AnimatedTitle
-          className="text-3xl"
-          texts={[
-            "Thomas Neang",
-            "Développeur fullstack JS",
-            "Créateur d'interface responsive",
-            "Intégrateur backend avancé",
-          ]}
-        />
-        <span>
-          Cillum do incididunt esse eu magna proident Lorem. Ea nostrud ex
-          aliquip anim sint aute nostrud do sit enim consequat nostrud nostrud.
-          Laboris commodo ad voluptate occaecat Lorem dolore consequat ut ipsum
-          cupidatat et excepteur adipisicing. Aliqua anim ipsum ea enim ullamco
-          do non sunt quis dolor. Sunt sint ut laboris exercitation magna
-          eiusmod ut cillum. Duis ex occaecat pariatur ex non labore officia
-          adipisicing fugiat velit ipsum non sint. Aliqua officia ea in aliquip
-          nisi. Dolore aliqua pariatur Lorem pariatur Lorem ea do deserunt qui
-          quis duis excepteur laboris. Labore velit ullamco officia pariatur
-          est.
-        </span>
+      <Section
+        id={sections.home.id}
+        className="bg-transparent flex items-center"
+      >
+        <AnimatedContainer className="mx-auto w-3/4 md:max-w-[50%] md:ml-[33vh]">
+          <AnimatedTitle
+            className="text-3xl mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
+            texts={[
+              "Thomas Neang",
+              "Développeur fullstack JS",
+              "Créateur d'UI responsive",
+              "Intégrateur backend avancé",
+            ]}
+          />
+          <p>
+            {`Développeur polyvalent avec 7 ans d'expériences, j'ai travaillé autant sur des projets backend
+          que frontend tout en étant en charge de suivre la mise en production de mes travaux.
+          Je participe aussi à l'amélioration de la scalabilité de l'infrastructure si besoin grâce à mes compétences en DevOps.`}
+          </p>
+          <p>
+            {`Mes languages principaux sont Typescript et Java et je travaille principalement avec React + Next.js, Vue.js et Spring Boot.`}
+          </p>
+
+            <AnchorButton className="mt-2 w-auto" href={CVPath} download>
+              Télécharger mon CV
+            </AnchorButton>
+        </AnimatedContainer>
       </Section>
-      <Section id={sections.about.id} label="À propos">
-        <span>
-          Consectetur est officia culpa consectetur voluptate aute consequat
-          sint sunt eiusmod magna adipisicing amet et. Commodo voluptate ullamco
-          laborum sunt officia voluptate excepteur et et veniam. Est fugiat ea
-          anim culpa magna. Id pariatur adipisicing et eiusmod est commodo ea
-          exercitation. In consequat fugiat eu mollit nostrud culpa irure est in
-          pariatur. Eiusmod nulla ipsum reprehenderit laboris. Officia qui aute
-          anim voluptate mollit est proident ipsum incididunt. Magna cupidatat
-          cupidatat nulla tempor culpa labore sit duis proident. Eu consequat
-          velit in commodo cillum veniam laborum tempor laboris quis aliqua
-          exercitation ipsum enim. Officia reprehenderit consectetur veniam
-          magna ut incididunt nulla cillum ad in sit in mollit reprehenderit.
-          Ullamco cillum aliqua et amet officia est ullamco amet consequat
-          officia laborum culpa. Nostrud reprehenderit magna magna commodo esse
-          ea et occaecat sint deserunt esse officia esse incididunt. Consectetur
-          elit do incididunt ullamco eiusmod ipsum anim adipisicing irure do
-          enim irure aute. Elit ad cupidatat laboris fugiat in. Ipsum irure
-          proident est ex ut tempor consectetur aliqua.
-        </span>
+      <Section
+        id={sections.about.id}
+        label={sections.about.label}
+        className="section"
+      >
+        <AnimatedContainer className="centered scrollable-content">
+          <p>
+            Consectetur est officia culpa consectetur voluptate aute consequat
+            sint sunt eiusmod magna adipisicing amet et. Commodo voluptate
+            ullamco laborum sunt officia voluptate excepteur et et veniam. Est
+            fugiat ea anim culpa magna. Id pariatur adipisicing et eiusmod est
+            commodo ea exercitation. In consequat fugiat eu mollit nostrud culpa
+            irure est in pariatur. Eiusmod nulla ipsum reprehenderit laboris.
+            Officia qui aute anim voluptate mollit est proident ipsum
+            incididunt. Magna cupidatat cupidatat nulla tempor culpa labore sit
+            duis proident. Eu consequat velit in commodo cillum veniam laborum
+            tempor laboris quis aliqua exercitation ipsum enim. Officia
+            reprehenderit consectetur veniam magna ut incididunt nulla cillum ad
+            in sit in mollit reprehenderit. Ullamco cillum aliqua et amet
+            officia est ullamco amet consequat officia laborum culpa. Nostrud
+            reprehenderit magna magna commodo esse ea et occaecat sint deserunt
+            esse officia esse incididunt. Consectetur elit do incididunt ullamco
+            eiusmod ipsum anim adipisicing irure do enim irure aute. Elit ad
+            cupidatat laboris fugiat in. Ipsum irure proident est ex ut tempor
+            consectetur aliqua.
+          </p>
+        </AnimatedContainer>
       </Section>
 
-      <Section id={sections.projects.id} label={sections.projects.label}>
-        <Project></Project>
+      <Section
+        id={sections.projects.id}
+        label={sections.projects.label}
+        className="section"
+      >
+        <AnimatedContainer className="centered scrollable-content">
+          <Project />
+        </AnimatedContainer>
       </Section>
 
-      <Section id={sections.contact.id} label={sections.contact.label}>
-        <div className="w-full flex justify-center">
+      <Section
+        id={sections.contact.id}
+        label={sections.contact.label}
+        className="section"
+      >
+        <AnimatedContainer className="centered scrollable-content">
           <ContactForm />
-        </div>
+        </AnimatedContainer>
       </Section>
     </>
   );
