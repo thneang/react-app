@@ -112,3 +112,12 @@ body {
   text-white shadow-sm hover:bg-cyan-800 focus:outline-none focus:ring-2
    focus:ring-cyan-500 focus:ring-offset-2 cursor-pointer inline-block;
 }
+h1 {
+  @apply dark:text-gray-300 font-bold;
+}
+section > h1 {
+  @apply  dark:text-gray-300;
+}
+h2 {
+  @apply text-2xl dark:text-cyan-500;
+}

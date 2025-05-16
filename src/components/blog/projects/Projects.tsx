@@ -15,14 +15,14 @@ export function Project() {
     },
     {
       title: "DUE",
-      description: "Description of project 2",
+      description: "",
       imageUrl: "",
       link: "/projects/due",
       tags: [Tag.FRONT],
     },
     {
       title: "API de paiement",
-      description: "Description of project 2",
+      description: "",
       imageUrl: "",
       link: "/projects/due",
       tags: [Tag.BACK],

@@ -65,13 +65,14 @@ export function ContactForm() {
         if (!validate()) return;
         handleSubmit();
       }}
-      className="flex flex-col space-y-4 w-full md:w-2/3 self-center"
+      className="flex flex-col space-y-4 w-full lg:w-2/3 self-center"
     >
       <div className="flex flex-col md:flex-row gap-4">
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <FloatingLabel label="Email*">
             <input
               type="email"
+              placeholder="Obligatoire"
               value={form.email}
               onChange={(e) =>
                 setForm((f) => ({ ...f, email: e.target.value }))
@@ -81,10 +82,11 @@ export function ContactForm() {
             />
           </FloatingLabel>
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <FloatingLabel label="Entreprise">
             <input
               type="text"
+              placeholder="Facultatif"
               value={form.entreprise}
               onChange={(e) =>
                 setForm((f) => ({ ...f, entreprise: e.target.value }))
@@ -98,6 +100,7 @@ export function ContactForm() {
       <FloatingLabel label="Poste">
         <input
           type="text"
+          placeholder="Facultatif"
           value={form.poste}
           onChange={(e) => setForm((f) => ({ ...f, poste: e.target.value }))}
           className="p-2 border border-gray-300 rounded w-full"
@@ -107,13 +110,14 @@ export function ContactForm() {
       <FloatingLabel label="Message*">
         <textarea
           value={form.message}
+          placeholder="Obligatoire"
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
           className="p-2 border border-gray-300 rounded min-h-[300px] w-full"
           required
         />
       </FloatingLabel>
 
-      <Button type="submit" className="w-full md:max-w-[300px]">
+      <Button type="submit" className="w-full lg:max-w-[300px]">
         Envoyer
       </Button>
       <span className="text-red-500">

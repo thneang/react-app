@@ -1,12 +1,15 @@
-'use client';
+"use client";
 import { SectionMapType } from "@/types/global";
-import { useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 
 interface TopNabarProps {
   sections: SectionMapType;
 }
 
-export function TopNavbar({ sections }: TopNabarProps) {
+export function TopNavbar({
+  children,
+  sections,
+}: PropsWithChildren<TopNabarProps>) {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   useEffect(() => {
@@ -33,11 +36,19 @@ export function TopNavbar({ sections }: TopNabarProps) {
           <a
             key={id}
             href={`#${id}`}
-            className="text-foreground  hover:text-shadow-sm hover:text-shadow-cyan-500"
+            className="text-foreground hover:text-shadow-sm hover:text-shadow-cyan-500"
           >
             {label}
           </a>
         ))}
+        <a
+          href="https://github.com/thneang?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-7 h-7 bg-[url('/github-mark-white.svg')] bg-center bg-no-repeat bg-contain inline-block"
+          aria-label="GitHub"
+        />
+        {children}
       </nav>
     </header>
   );
