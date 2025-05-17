@@ -9,7 +9,7 @@ import { TopNavbar } from "@/components/navigation/TopNavbar";
 
 const sections = {
   home: { id: "home", label: "Accueil" },
-  about: { id: "about", label: "Experience" },
+  about: { id: "about", label: "Expérience" },
   projects: { id: "projects", label: "Projets" },
   contact: { id: "contact", label: "Contact" },
 } as const;
@@ -27,7 +27,7 @@ export default async function HomePage() {
       >
         <AnimatedContainer className="mx-auto w-3/4 lg:max-w-[50%] lg:ml-[33vh]">
           <AnimatedTitle
-            className="text-3xl mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
+            className="text-3xl font-bold text-cyan-500 mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
             texts={[
               "Thomas Neang",
               "Développeur fullstack JS",
@@ -36,20 +36,21 @@ export default async function HomePage() {
             ]}
           />
           <p>
-            {`Développeur polyvalent avec 7 ans d'expériences, j'ai travaillé autant sur des projets backend
+            {`Développeur polyvalent avec 7 ans d'expérience, j'ai travaillé autant sur des projets backend
           que frontend tout en étant en charge de suivre la mise en production de mes travaux.
           Je participe aussi à l'amélioration de la scalabilité de l'infrastructure si besoin grâce à mes compétences en DevOps.`}
           </p>
           <p>
-            {`Je suis à 40 minutes de Paris mais je suis ouvert pour un déplacement mensuel en télétravail pour les zone plus éloignées.`}
+            {`Je suis à 40 minutes de Paris mais je suis ouvert à un déplacement mensuel si le poste est en télétravail pour les zones plus éloignées.`}
           </p>
           <p>
-            {`Mes languages principaux sont Typescript et Java et je travaille principalement avec React + Next.js, Vue.js et Spring Boot.`}
+            {`Mes langages principaux sont Typescript et Java et je travaille principalement avec React + Next.js, Vue.js et Spring Boot.`}
           </p>
 
           <AnchorButton className="mt-2 w-auto" href={CVPath} download>
             Télécharger mon CV
           </AnchorButton>
+          
         </AnimatedContainer>
       </Section>
       <Section
@@ -58,57 +59,84 @@ export default async function HomePage() {
         className="section"
       >
         <AnimatedContainer className="centered">
-          <h1 className="text-3xl">Khresterion 2018-2024</h1>
-          <div className="flex gap-4 mt-10">
+          <h1 className="text-3xl mt-4 lg:mt-0">Khresterion 2018-2024</h1>
+          <div className="flex flex-col lg:flex-row gap-4 mt-10">
             <div className="flex flex-col gap-4 w-full lg:w-1/2">
               <h2>Le commencement</h2>
               <p>
-                {`Après avoir obtenu mon diplôme de maîtrise en mathématiques et informatique à l’université de Marne-la-Vallée en 2016, 
-                j’ai temporairement travaillé dans le commerce familial pendant 1 an afin de soutenir ma famille.
-                J’ai commencé ma carrière en 2018 en tant qu’ingénieur logiciel chez Khresterion qui en était à ses débuts dans l'insurtech, ce qui m’a permis de participer activement à la création des applications from scratch, 
-                ainsi qu’à la mise en place du pipeline CI/CD et de l’architecture en microservices.
-            `}
+                Après avoir obtenu mon master en mathématiques et informatique à
+                l’université de Marne-la-Vallée en 2016, j’ai travaillé pendant
+                un an dans le commerce familial pour soutenir mes proches. J’ai
+                ensuite débuté ma carrière en 2018 en tant qu’ingénieur logiciel en télétravail total
+                chez Khresterion, alors jeune entreprise dans l’insurtech. Cela
+                m’a permis de participer dès le départ à la création
+                d’applications from scratch, ainsi qu’à la mise en place du
+                pipeline CI/CD et de l’architecture en microservices.
               </p>
               <h2>Que fait Khresterion ?</h2>
               <p>
-                {`Khresterion est une entreprise qui propose une IA pour accompagner ses clients dans leur prise de décision, 
-                en modélisant leurs connaissances et logiques métiers grâce à leurs experts. 
-                Cela permet ensuite d’obtenir des conseils en temps réel, comme s’ils étaient accompagnés par un expert. 
-                Dans le cas des assurances, cela permet de vérifier que leurs garanties sont conformes aux lois et réglementations en vigueur.
-                L'entreprise propose aussi des solutions pour garantir la conformité de documents juridiques comme les DUE ou les contrats de travails.
-                J’ai ainsi contribué au développement d’applications frontend et backend, robustes et scalables, à destination de grands comptes de l'assurance.`}
+                Khresterion développe une intelligence artificielle permettant à
+                ses clients de formaliser leurs connaissances métiers, afin
+                d’obtenir des conseils en temps réel comme s’ils étaient
+                accompagnés par un expert. Dans le domaine des assurances, cela
+                permet par exemple de vérifier automatiquement la conformité des
+                garanties aux réglementations en vigueur dans le cadre de la réforme du 100% santé. 
+                L’entreprise propose également des solutions pour assurer la conformité de documents
+                juridiques comme les DUE ou les contrats de travail. J’ai
+                contribué au développement d’applications frontend et backend
+                robustes, scalables, et destinées à de grands comptes du secteur
+                assurantiel.
               </p>
               <h2>Pourquoi 7 ans pour le même poste ?</h2>
               <p>
-                {`J'ai beaucoup évolué durant ces 7 ans. Arrivée en tant que développeur Java, mes responsabilités ont rapidement évolué pour répondre aux besoins de l'entreprise.
-                Nous étions une petite équipe de 4 personnes chacun responsable d'un projet différent. Ce qui implique de devoir être autonome et polyvalent.
-                De nature curieuse, j’ai apprécié cette opportunité d’explorer des technologies variées, 
-                tout en résolvant des problèmes complexes liés au domaine du web sémantique — 
-                ce qui explique pourquoi je suis resté dans cette entreprise pendant sept ans. 
-                La plupart des projets sur lesquels j’ai travaillé sont à destination du B2B et ne peuvent malheureusement pas être partagés ici.`}
+                Même si mon intitulé de poste est resté le même, mes
+                responsabilités ont fortement évolué au fil du temps. Dans une
+                équipe de 4 personnes, chacun était responsable de son propre
+                projet, ce qui exigeait une grande autonomie et une forte
+                polyvalence. Curieux de nature, j’ai profité de cette liberté
+                pour explorer des technologies variées et résoudre des
+                problématiques complexes liées au web sémantique. C’est cette
+                diversité de missions et de défis qui explique pourquoi je suis
+                resté sept ans dans cette entreprise. La plupart des projets
+                étant réalisés pour des clients B2B, je ne peux malheureusement
+                pas les partager publiquement.
               </p>
             </div>
-            <div className="flex flex-col gap-2 w-1/2">
+            <div className="flex flex-col gap-4 w-full lg:w-1/2">
               <h2>Les challenges</h2>
               <p>
-                {`Une grande partie de la difficulté se base sur la maitrise des technologies propriétaire de l'entreprise. La communauté du web sémantique étant réduite, 
-              il ne suffit pas d'aller sur StackOverflow ou Github pour trouver toutes ses réponses. Une compréhension de la modélisation et beaucoup d'expérimentation sont nécessaires.
-              Mais pour faire simple les données métiers sont sauvegarder dans une base de donnée graph comme GraphDB ou Stardog ensuite nous utilisons notre moteur de 
-              raisonement pour inférer (calculer) une recommandation sur la base du modèle client. 
-              Ces informations sont ensuite affiché sur l'application du client en temps réel.
-              `}
+                L’un des principaux défis techniques résidait dans la maîtrise
+                des technologies propriétaires de l’entreprise. Dans un domaine
+                aussi spécifique que le web sémantique, la documentation en
+                ligne est limitée, et il est souvent nécessaire d’expérimenter
+                et de comprendre la modélisation en profondeur. Les données
+                métiers sont stockées dans des bases de données orientées graph
+                (GraphDB, Stardog), puis analysées en temps réel par notre
+                moteur de raisonnement pour générer des recommandations
+                personnalisées.
               </p>
-              <p>{`Il y a donc un équilibrage délicat à avoir sur la performance coté infrastructure pour ne pas avoir de raisonnement trop long et garder une application qui répond assez vite.
-              Mon role dans tout ça était donc de bien gérer les données coté front pour raisonner au bon moment et de manière la plus transparente possible pour l'utilisateur 
-              tout en surveillant la charge sur les différents moteur de raisonnement ainsi que sur la base de donnée. Un mapping des données est aussi nécessaire pour ne pas tout 
-              sauvegarder dans la base de données graph car toutes les données ne sont pas forcément nécessaire pour le raisonnement.
-              Coté back, j'ai travaillé sur une API de paiement pour gérer les paiements de nos clients ainsi que sur le générateur de document permettant de générer les différents 
-              document juridique. Une connaissance de python, Latex et lua était nécessaire.`}</p>
+              <p>
+                Cela impliquait un travail minutieux sur la performance, afin de
+                garantir des temps de réponse courts malgré la complexité du
+                raisonnement. Mon rôle consistait notamment à gérer
+                intelligemment les données côté frontend pour déclencher les
+                raisonnements au bon moment, tout en limitant la charge sur les
+                moteurs et les bases de données. Il fallait également concevoir
+                des mappings sélectifs pour n’enregistrer que les informations
+                nécessaires. Côté backend, j’ai mis en place une API de paiement
+                et contribué à un générateur de documents juridiques (contrats,
+                DUE…), en utilisant Python, LaTeX et Lua.
+              </p>
               <h2>Et maintenant ?</h2>
               <p>
-                {`Je me spécialise aujourd’hui dans le développement d’applications web et mobiles, en tant que développeur fullstack JS, 
-                avec comme principales technologies React et Next.js, utilisées notamment pour ce portfolio. 
-                Je suis ouvert à de nouvelles opportunités, sans être limité à une stack particulière : je saurai m’adapter à vos besoins et à votre environnement de travail.`}
+                Je me spécialise aujourd’hui dans le développement
+                d’applications web et mobiles en tant que développeur fullstack
+                JavaScript, avec une appétence particulière pour React et
+                Next.js, que j’utilise notamment dans ce portfolio. Je suis à la
+                recherche d’une nouvelle opportunité, sans attachement rigide à
+                une stack précise : je suis prêt à m’adapter aux besoins
+                spécifiques de votre équipe et de vos projets.
+                Je m’amuse actuellement sur des projets personnels pour devenir un meilleur développeur React.
               </p>
             </div>
           </div>
@@ -120,7 +148,7 @@ export default async function HomePage() {
         label={sections.projects.label}
         className="section"
       >
-        <AnimatedContainer className="centered scrollable-content">
+        <AnimatedContainer className="centered">
           <Project />
         </AnimatedContainer>
       </Section>
@@ -130,7 +158,7 @@ export default async function HomePage() {
         label={sections.contact.label}
         className="section"
       >
-        <AnimatedContainer className="centered scrollable-content">
+        <AnimatedContainer className="centered">
           <ContactForm />
         </AnimatedContainer>
       </Section>

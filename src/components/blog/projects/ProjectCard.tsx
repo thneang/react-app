@@ -40,7 +40,7 @@ export function ProjectCard({
         rel="noopener noreferrer"
         className="mt-4 px-4 py-2 bg-cyan-900 text-white rounded-lg hover:bg-cyan-600"
       >
-        View Project
+        Voir détails
       </a>
     </div>
   );

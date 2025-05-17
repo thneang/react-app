@@ -37,8 +37,8 @@ export function AnimatedTitle({ texts, className }: AnimatedTitleProps) {
   }, [currentText, isDeleting, speed, texts, currentIndex]);
 
   return (
-    <h1 className={" " + (className ? className : "")}>
+    <h2 className={" " + (className ? className : "")}>
       {currentText} <span className={styles.blinking}>|</span>
-    </h1>
+    </h2>
   );
 }
