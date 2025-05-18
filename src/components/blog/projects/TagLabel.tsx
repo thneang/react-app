@@ -1,6 +1,6 @@
 import { Tag } from "@/types/global";
 interface TagProps {
-  tag: Tag;
+  tag: Tag | string;
 }
 export function TagLabel({ tag }: TagProps) {
   let color = "bg-gray-700";

@@ -12,6 +12,10 @@
   --foreground: #ededed;
 }
 
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
+}
+
 /* Use the user's preference for the rest */
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -116,7 +120,7 @@ h1 {
   @apply dark:text-gray-300 font-bold;
 }
 section > h1 {
-  @apply  dark:text-gray-300;
+  @apply dark:text-gray-300;
 }
 h2 {
   @apply text-2xl dark:text-cyan-500;
