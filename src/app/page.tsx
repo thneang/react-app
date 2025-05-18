@@ -59,9 +59,9 @@ export default async function HomePage() {
         className="section"
       >
         <AnimatedContainer className="centered">
-          <h1 className="text-3xl mt-4 lg:mt-0">Khresterion 2018-2024</h1>
-          <div className="flex flex-col lg:flex-row gap-4 mt-10">
-            <div className="flex flex-col gap-4 w-full lg:w-1/2">
+          <h1 className="text-2xl mt-4 xl:mt-0">Khresterion 2018-2024</h1>
+          <div className="flex flex-col xl:flex-row gap-4">
+            <div className="flex flex-col gap-4 w-full xl:w-1/2">
               <h2>Le commencement</h2>
               <p>
                 Après avoir obtenu mon master en mathématiques et informatique à
@@ -102,7 +102,7 @@ export default async function HomePage() {
                 pas les partager publiquement.
               </p>
             </div>
-            <div className="flex flex-col gap-4 w-full lg:w-1/2">
+            <div className="flex flex-col gap-4 w-full xl:w-1/2">
               <h2>Les challenges</h2>
               <p>
                 L’un des principaux défis techniques résidait dans la maîtrise
