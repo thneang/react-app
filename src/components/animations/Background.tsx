@@ -9,6 +9,14 @@ import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadBa
 
 export function Background() {
   const [init, setInit] = useState(false);
+  const options = useMemo(() => {
+  const isMobile = window.innerWidth < 768;
+  const fps = isMobile ? 30 : 60;
+  return {
+    ...basicOption,
+    fpsLimit: fps,
+  };
+}, []);
 
   // this should be run only once per application lifetime
   useEffect(() => {
@@ -18,9 +26,6 @@ export function Background() {
       // starting from v2 you can add only the features you need reducing the bundle size
       //await loadAll(engine);
       //await loadFull(engine);
-      const isMobile = window.innerWidth < 768;
-      const fps = isMobile ? 30 : 60;
-      basicOption.fpsLimit = fps;
       await loadSlim(engine);
       // await loadBasic(engine);
     }).then(() => {
@@ -31,8 +36,6 @@ export function Background() {
   // const particlesLoaded = async (container?: Container): Promise<void> => {
   //   console.log(container);
   // };
-
-  const options = useMemo(() => basicOption, []);
 
   if (init) {
     return (
