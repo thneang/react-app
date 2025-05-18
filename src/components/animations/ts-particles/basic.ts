@@ -5,7 +5,7 @@ export const basicOption = {
       value: "#000000",
     },
   },
-  fpsLimit: 120,
+  fpsLimit: 60,
   interactivity: {
     events: {
       onClick: {
