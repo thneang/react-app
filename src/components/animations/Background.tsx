@@ -41,7 +41,6 @@ export function Background() {
         // particlesLoaded={particlesLoaded}
         options={options}
         className={"fixed top-0 left-0 w-screen h-screen -z-10"}
-        data-darkreader-ignore
       />
     );
   }
