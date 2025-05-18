@@ -31,26 +31,30 @@ export default async function HomePage() {
             texts={[
               "Thomas Neang",
               "Développeur fullstack JS",
-              "Créateur d'UI responsive",
+              "Créateur d’UI responsive",
               "Intégrateur backend avancé",
             ]}
           />
           <p>
-            {`Développeur polyvalent avec 7 ans d'expérience, j'ai travaillé autant sur des projets backend
-          que frontend tout en étant en charge de suivre la mise en production de mes travaux.
-          Je participe aussi à l'amélioration de la scalabilité de l'infrastructure si besoin grâce à mes compétences en DevOps.`}
+            Développeur polyvalent avec 7 ans d’expérience, j’ai travaillé aussi
+            bien sur des projets backend que frontend, tout en étant en charge
+            de la mise en production de mes travaux. Je participe également à
+            l’amélioration de la scalabilité de l’infrastructure si nécessaire,
+            grâce à mes compétences en DevOps.
           </p>
           <p>
-            {`Je suis à 40 minutes de Paris mais je suis ouvert à un déplacement mensuel si le poste est en télétravail pour les zones plus éloignées.`}
+            Je suis à 40 minutes de Paris, mais je suis ouvert à un déplacement
+            mensuel si le poste est en télétravail depuis des zones plus
+            éloignées.
           </p>
           <p>
-            {`Mes langages principaux sont Typescript et Java et je travaille principalement avec React + Next.js, Vue.js et Spring Boot.`}
+            Mes langages principaux sont TypeScript et Java, et je travaille
+            principalement avec React + Next.js, Vue.js et Spring Boot.
           </p>
 
           <AnchorButton className="mt-2 w-auto" href={CVPath} download>
             Télécharger mon CV
           </AnchorButton>
-          
         </AnimatedContainer>
       </Section>
       <Section
@@ -60,18 +64,18 @@ export default async function HomePage() {
       >
         <AnimatedContainer className="centered">
           <h1 className="text-2xl mt-4 xl:mt-0">Khresterion 2018-2024</h1>
-          <div className="flex flex-col xl:flex-row gap-4">
+          <div className="flex flex-col xl:flex-row gap-10">
             <div className="flex flex-col gap-4 w-full xl:w-1/2">
               <h2>Le commencement</h2>
               <p>
                 Après avoir obtenu mon master en mathématiques et informatique à
                 l’université de Marne-la-Vallée en 2016, j’ai travaillé pendant
                 un an dans le commerce familial pour soutenir mes proches. J’ai
-                ensuite débuté ma carrière en 2018 en tant qu’ingénieur logiciel en télétravail total
-                chez Khresterion, alors jeune entreprise dans l’insurtech. Cela
-                m’a permis de participer dès le départ à la création
-                d’applications from scratch, ainsi qu’à la mise en place du
-                pipeline CI/CD et de l’architecture en microservices.
+                ensuite débuté ma carrière en 2018 en tant qu’ingénieur logiciel
+                en télétravail total chez Khresterion, alors jeune entreprise
+                dans l’insurtech. Cela m’a permis de participer dès le départ à
+                la création d’applications from scratch, ainsi qu’à la mise en
+                place du pipeline CI/CD et de l’architecture en microservices.
               </p>
               <h2>Que fait Khresterion ?</h2>
               <p>
@@ -80,11 +84,12 @@ export default async function HomePage() {
                 d’obtenir des conseils en temps réel comme s’ils étaient
                 accompagnés par un expert. Dans le domaine des assurances, cela
                 permet par exemple de vérifier automatiquement la conformité des
-                garanties aux réglementations en vigueur dans le cadre de la réforme du 100% santé. 
-                L’entreprise propose également des solutions pour assurer la conformité de documents
-                juridiques comme les DUE ou les contrats de travail. J’ai
-                contribué au développement d’applications frontend et backend
-                robustes, scalables, et destinées à de grands comptes du secteur
+                garanties aux réglementations en vigueur dans le cadre de la
+                réforme du 100% santé. L’entreprise propose également des
+                solutions pour assurer la conformité de documents juridiques
+                comme les DUE ou les contrats de travail. J’ai contribué au
+                développement d’applications frontend et backend robustes,
+                scalables, et destinées à de grands comptes du secteur
                 assurantiel.
               </p>
               <h2>Pourquoi 7 ans pour le même poste ?</h2>
@@ -135,8 +140,9 @@ export default async function HomePage() {
                 Next.js, que j’utilise notamment dans ce portfolio. Je suis à la
                 recherche d’une nouvelle opportunité, sans attachement rigide à
                 une stack précise : je suis prêt à m’adapter aux besoins
-                spécifiques de votre équipe et de vos projets.
-                Je m’amuse actuellement sur des projets personnels pour devenir un meilleur développeur React.
+                spécifiques de votre équipe et de vos projets. Je m’amuse
+                actuellement sur des projets personnels pour devenir un meilleur
+                développeur React.
               </p>
             </div>
           </div>

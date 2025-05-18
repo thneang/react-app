@@ -13,7 +13,7 @@ export function TagLabel({ tag }: TagProps) {
       color = "bg-green-700";
       break;
     case Tag.DEVOPS:
-      color = "bg-red-700";
+      color = "bg-orange-700";
       break;
     default:
       color = "bg-gray-700";

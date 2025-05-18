@@ -29,7 +29,7 @@ export function ProjectCard(props: PropsWithChildren<ProjectCardProps>) {
           />
         )}
         <h2 className="mt-4 text-xl font-bold text-white">{props.title}</h2>
-        <p className={"relative mt-2 text-gray-400"} >
+        <p className={"mt-2 text-gray-400"} >
           {props.children}
           {props.description}
         </p>
@@ -43,7 +43,7 @@ export function ProjectCard(props: PropsWithChildren<ProjectCardProps>) {
             <TagLabel key={tag} tag={tag} />
           ))}
         </div>
-        <div className="flex mt-4 gap-2">
+        <div className="flex mt-4 gap-2 h-[36px]">
           {props.link && (
             <a
               href={props.link}
