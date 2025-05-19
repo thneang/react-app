@@ -61,17 +61,6 @@ export function Project() {
         déploiements d’applications. Permet également de configurer les serveurs
         ainsi que de gérer les routes vers nos applications.
       </ProjectCard>
-      <ProjectCard
-        key="Task list"
-        title="Task list"
-        tags={[Tag.FRONT]}
-        techTag={["React", "Next.js", "Typescript"]}
-        link="/board"
-      >
-        Projet en cours de développement. Il s’agit d’une application de gestion
-        de tâches où je reprends les fonctionnalités de Trello en expérimentant
-        avec React et Next.js.
-      </ProjectCard>
     </div>
   );
 }
