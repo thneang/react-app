@@ -30,7 +30,7 @@ export default async function HomePage() {
             className="text-3xl font-bold text-cyan-500 mb-2 whitespace-nowrap overflow-hidden text-ellipsis"
             texts={[
               "Thomas Neang",
-              "Développeur fullstack JS",
+              "Développeur fullstack",
               "Créateur d’UI responsive",
               "Intégrateur backend avancé",
             ]}
@@ -44,8 +44,7 @@ export default async function HomePage() {
           </p>
           <p>
             Je suis à 40 minutes de Paris, mais je suis ouvert à un déplacement
-            mensuel si le poste est en télétravail depuis des zones plus
-            éloignées.
+            mensuel pour des zones plus éloignées si le poste est en télétravail.
           </p>
           <p>
             Mes langages principaux sont TypeScript et Java, et je travaille
@@ -139,10 +138,8 @@ export default async function HomePage() {
                 JavaScript, avec une appétence particulière pour React et
                 Next.js, que j’utilise notamment dans ce portfolio. Je suis à la
                 recherche d’une nouvelle opportunité, sans attachement rigide à
-                une stack précise : je suis prêt à m’adapter aux besoins
-                spécifiques de votre équipe et de vos projets. Je m’amuse
-                actuellement sur des projets personnels pour devenir un meilleur
-                développeur React.
+                une stack précise : je suis prêt à m’adapter rapidement aux besoins
+                spécifiques de votre équipe et de vos projets.
               </p>
             </div>
           </div>
