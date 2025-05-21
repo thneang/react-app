@@ -44,11 +44,13 @@ export default async function HomePage() {
           </p>
           <p>
             Je suis à 40 minutes de Paris, mais je suis ouvert à un déplacement
-            mensuel pour des zones plus éloignées si le poste est en télétravail.
+            mensuel pour des zones plus éloignées si le poste est en
+            télétravail.
           </p>
           <p>
             Mes langages principaux sont TypeScript et Java, et je travaille
-            principalement avec React + Next.js, Vue.js et Spring Boot.
+            principalement avec React.js ou Vue.js et Spring Boot. Je peux aussi
+            travailler sur un back Node.js si besoin.
           </p>
 
           <AnchorButton className="mt-2 w-auto" href={CVPath} download>
@@ -133,13 +135,12 @@ export default async function HomePage() {
               </p>
               <h2>Et maintenant ?</h2>
               <p>
-                Je me spécialise aujourd’hui dans le développement
-                d’applications web et mobiles en tant que développeur fullstack
-                JavaScript, avec une appétence particulière pour React et
-                Next.js, que j’utilise notamment dans ce portfolio. Je suis à la
-                recherche d’une nouvelle opportunité, sans attachement rigide à
-                une stack précise : je suis prêt à m’adapter rapidement aux besoins
-                spécifiques de votre équipe et de vos projets.
+                Je suis à la recherche d’une nouvelle opportunité, sans
+                attachement rigide à une stack particulière. Je suis prêt à
+                m’adapter rapidement aux outils et technologies utilisés par
+                votre équipe. Ce qui m’importe avant tout, c’est de répondre
+                efficacement à vos besoins techniques et fonctionnels, quelle
+                que soit la stack choisie.
               </p>
             </div>
           </div>
