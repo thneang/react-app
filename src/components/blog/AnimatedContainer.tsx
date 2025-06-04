@@ -7,7 +7,7 @@ export function AnimatedContainer({
   className,
 }: PropsWithChildren<{ className?: string }>) {
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.2 });
+  const inView = useInView(ref, { amount: 'some' });
   const controls = useAnimation();
 
   useEffect(() => {
