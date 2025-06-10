@@ -1,5 +1,5 @@
 import { useActive, UseActiveType } from "@/lib/hooks/useActive";
-import { createContext, PropsWithChildren, useContext } from "react";
+import { createContext, PropsWithChildren, useContext, useRef } from "react";
 
 const DropdownContext = createContext<UseActiveType | undefined>(undefined);
 
@@ -17,20 +17,20 @@ export function Dropdown({
 }: PropsWithChildren & { className?: string }) {
   const { isActive, setIsActive, onClickHandler } = useActive();
 
-  // const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Give some leeway to the user when leaving the dropdown
   function handleMouseLeave() {
-    // timeoutRef.current = setTimeout(() => {
-    //   setIsActive(false);
-    // }, 300);
+    timeoutRef.current = setTimeout(() => {
+      setIsActive(false);
+    }, 300);
   }
 
   function handleMouseEnter() {
-    // if (timeoutRef.current) {
-    //   clearTimeout(timeoutRef.current);
-    //   timeoutRef.current = null;
-    // }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
   }
 
   return (
